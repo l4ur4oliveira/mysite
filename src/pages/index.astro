@@ -1,16 +1,28 @@
 ---
-
+import "../styles/global.css";
+import * as Hero from '../content/hero.md';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Laura de Oliveira</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<main class="w-full">
+			<section id="hero" class="max-w-7xl m-auto flex flex-col md:flex-row items-center justify-center gap-40">
+				<div class="w-full md:w-4/6 flex flex-col gap-10">
+					<h1 class="text-8xl font-oxygen-mono tracking-tighter">
+						Hi, I'm <span class="text-lime-400">Laura</span>.
+					</h1>
+					<Hero.Content />
+				</div>
+				<div class="w-full md:w-2/6">
+					<img src={Hero.frontmatter.photoUrl} alt={Hero.frontmatter.photoAlt} class="max-w-[350px] m-auto rounded-full" />
+				</div>
+			</section>
+		</main>
 	</body>
 </html>

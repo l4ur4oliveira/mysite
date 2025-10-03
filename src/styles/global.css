@@ -4,6 +4,10 @@
 @theme {
   --font-oxygen-mono: 'Oxygen Mono', monospace;
   --font-open-sans: 'Open Sans', sans-serif;
+
+  --color-lime-400: #79F67A;
+  --color-teal-50: #F7F8F9;
+  --color-teal-800: #2A464F;
 }
 
 body {
