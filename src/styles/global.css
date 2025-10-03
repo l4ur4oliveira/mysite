@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Oxygen+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-oxygen-mono: 'Oxygen Mono', monospace;
+  --font-open-sans: 'Open Sans', sans-serif;
+}
+
+body {
+  font-family: var(--font-open-sans);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
