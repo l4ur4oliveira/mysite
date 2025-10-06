@@ -16,3 +16,7 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+#about div strong {
+  color: var(--color-teal-800);
+}
