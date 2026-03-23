@@ -1,31 +1,22 @@
 ---
-aboutTitle: "About me"
 workTitle: "Work"
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam labore harum ex, quas, similique dolores molestiae minus cumque animi totam commodi! Reprehenderit officiis illo nisi iusto recusandae consequuntur quam hic!
-
-<br />
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam labore harum ex, quas, similique dolores molestiae minus cumque animi totam commodi! Reprehenderit officiis illo nisi iusto recusandae consequuntur quam hic!
+Possuo uma combinação de habilidades em design, desenvolvimento e gestão de pessoas e projetos, que me permitiu transitar entre diferentes posições na carreira.
 
 <!-- split -->
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam labore harum ex, quas, similique dolores molestiae minus cumque animi totam commodi! Reprehenderit officiis illo nisi iusto recusandae consequuntur quam hic!
+**Últimos cargos**
 
-<br />
-
-**Last Roles**
-
-- Operations Coordinator
+- Coordenadora de Operações Tech
 - Product Owner
-- Front-end Team Leader
-- Front-end Software Analyst
+- Coordenadora Front-end
+- Analista de Desenvolvimento Front-end
 
-<br />
+<!-- split -->
 
-**Education**
+**Educação**
 
-- MBA in Corp. Education and Knowlegde Management at Estácio
-- MBA in Project Management at UNISINOS
-- Bachelor of Information Systems at UNISUL
+- MBA em Educação Corp. e Gestão do Conhecimento na Estácio
+- MBA em Gestão de Projetos na UNISINOS
+- Bacharel em Sistemas de Informação na UNISUL
