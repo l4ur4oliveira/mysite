@@ -18,6 +18,9 @@ import Palette from 'phosphor-astro/Palette.astro';
 import PresentationChart from 'phosphor-astro/PresentationChart.astro';
 import TrendUp from 'phosphor-astro/TrendUp.astro';
 import Users from 'phosphor-astro/Users.astro';
+import EnvelopeSimple from 'phosphor-astro/EnvelopeSimple.astro';
+import GithubLogo from 'phosphor-astro/GithubLogo.astro';
+import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
 
 const iconMap = {
 	Users,
@@ -54,9 +57,9 @@ const educationContent = marked(aboutWorkContent[2]);
 					<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
 				</a>
 				<ul class="flex items-center gap-9 font-oxygen-mono text-lime-400">
-					<li><a href="#about" class="tracking-tighter hover:underline">Trabalho</a></li>
-					<li><a href="#skills" class="tracking-tighter hover:underline">Skills</a></li>
-					<li><a href="#contact" class="tracking-tighter hover:underline">Contato</a></li>
+					<li><a href="#about" class="tracking-tighter hover:underline underline-offset-2">Trabalho</a></li>
+					<li><a href="#skills" class="tracking-tighter hover:underline underline-offset-2">Skills</a></li>
+					<li><a href="#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -114,6 +117,35 @@ const educationContent = marked(aboutWorkContent[2]);
 					</div>
 				</div>
 			</section>
+			<section id="contact" class="bg-white">
+				<div class="max-w-6xl m-auto py-20">
+					<h2 class="text-4xl font-oxygen-mono text-teal-800 mb-6">Entre em contato</h2>
+					<p class="text-teal-800 mb-8">Aberta a novas conexões, parcerias e oportunidades. Entre em contato e vamos construir algo juntos.</p>
+					<div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+						<a href="https://www.linkedin.com/in/l4ur4oliveira/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 transform hover:scale-105 transition-transform duration-200">
+							<LinkedinLogo class="w-6 h-6 text-teal-800" />
+							<span class="font-oxygen-mono text-teal-800">LinkedIn</span>
+						</a>
+						<a href="https://github.com/l4ur4oliveira" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 transform hover:scale-105 transition-transform duration-200">
+							<GithubLogo class="w-6 h-6 text-teal-800" />
+							<span class="font-oxygen-mono text-teal-800">GitHub</span>
+						</a>
+						<a href="mailto:l4ur4.88@gmail.com" class="flex items-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 transform hover:scale-105 transition-transform duration-200">
+							<EnvelopeSimple class="w-6 h-6 text-teal-800" />
+							<span class="font-oxygen-mono text-teal-800">Email</span>
+						</a>
+					</div>
+				</div>
+			</section>
+			<footer class="bg-black">
+				<div class="max-w-6xl m-auto py-6 text-center font-oxygen-mono">
+					<div class="text-lime-400 flex items-center justify-center gap-2">
+						<span>&copy; {new Date().getFullYear()}</span>
+						<span class="inline-block w-5 h-5" style="-webkit-mask: url('/olive-leaf.svg') no-repeat center/contain; mask: url('/olive-leaf.svg') no-repeat center/contain; background-color: currentColor;" aria-hidden="true"></span>
+						<span>l4uOliveira</span>
+					</div>
+				</div>
+			</footer>
 		</main>
 	</body>
 </html>
