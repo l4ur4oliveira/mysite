@@ -2,8 +2,37 @@
 import "../styles/global.css";
 import * as Hero from '../content/hero.md';
 import * as AboutWork from '../content/about-and-work.md';
+import * as Skills from '../content/skills.md';
 
 import { marked } from "marked";
+
+import ChatCircleDots from 'phosphor-astro/ChatCircleDots.astro';
+import Clock from 'phosphor-astro/Clock.astro';
+import Code from 'phosphor-astro/Code.astro';
+import FigmaLogo from 'phosphor-astro/FigmaLogo.astro';
+import FileJs from 'phosphor-astro/FileJs.astro';
+import GitBranch from 'phosphor-astro/GitBranch.astro';
+import Layout from 'phosphor-astro/Layout.astro';
+import Kanban from 'phosphor-astro/Kanban.astro';
+import Palette from 'phosphor-astro/Palette.astro';
+import PresentationChart from 'phosphor-astro/PresentationChart.astro';
+import TrendUp from 'phosphor-astro/TrendUp.astro';
+import Users from 'phosphor-astro/Users.astro';
+
+const iconMap = {
+	Users,
+	ChatCircleDots,
+	TrendUp,
+	Kanban,
+	Clock,
+	PresentationChart,
+	Code,
+	GitBranch,
+	FileJs,
+	FigmaLogo,
+	Palette,
+	Layout
+};
 
 const aboutWorkContent = AboutWork.rawContent().split('<!-- split -->');
 const workContent = marked(aboutWorkContent[0]);
@@ -56,6 +85,32 @@ const educationContent = marked(aboutWorkContent[2]);
 					<div class="w-full flex">
 						<div class="w-1/2 leading-7" set:html={rolesContent}></div>
 						<div class="w-1/2 leading-7" set:html={educationContent}></div>
+					</div>
+				</div>
+			</section>
+			<section id="skills" class="bg-teal-50">
+				<div class="max-w-6xl m-auto py-20">
+					<h2 class="text-4xl font-oxygen-mono text-teal-800 mb-10">{Skills.frontmatter.workTitle}</h2>
+					<div class="w-full">
+						<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
+							{Skills.frontmatter.skills.map((skill) => (
+								<article class="flex flex-col justify-between h-full rounded-lg bg-white shadow-md p-6 transform hover:scale-105 hover:shadow-lg transition-transform duration-200">
+									<div>
+										<h3 class="mb-2 text-lg font-semibold text-teal-800">{skill.name}</h3>
+										<p class="text-teal-800 leading-7">{skill.description}</p>
+									</div>
+									<div class="mt-6 flex items-center gap-3">
+										{(skill.icons || []).slice(0,3).map((iconName) => {
+											const Icon = iconMap[iconName];
+
+											return Icon && (
+												<Icon weight="bold" class="w-8 h-8 p-2 rounded-md bg-lime-400 text-teal-800" />
+											);
+										})}
+									</div>
+								</article>
+							))}
+						</div>
 					</div>
 				</div>
 			</section>
