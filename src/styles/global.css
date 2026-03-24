@@ -10,6 +10,10 @@
   --color-teal-800: #2A464F;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-open-sans);
   margin: 0;
@@ -17,6 +21,20 @@ body {
   box-sizing: border-box;
 }
 
+section {
+  scroll-margin-top: 80px;
+}
+
 #about div strong {
+  font-size: 1.25rem;
   color: var(--color-teal-800);
+  line-height: 3rem;
+}
+
+#about ul {
+  list-style: inside;
+}
+
+#about ul li::marker {
+  color: var(--color-lime-400);
 }
