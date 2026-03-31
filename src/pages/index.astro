@@ -52,16 +52,30 @@ const educationContent = marked(aboutWorkContent[2]);
 	</head>
 	<body>
 		<nav class="fixed top-0 left-0 right-0 z-50 bg-black">
-			<div class="max-w-6xl m-auto py-6 flex flex-col md:flex-row items-center justify-between">
+			<div class="max-w-6xl m-auto px-6 md:px-0 py-6 flex items-center justify-between">
 				<a href="#hero" class="flex items-center gap-3">
 					<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
 				</a>
-				<ul class="flex items-center gap-9 font-oxygen-mono text-lime-400">
+				<!-- Desktop links -->
+				<ul class="hidden md:flex items-center gap-9 font-oxygen-mono text-lime-400">
 					<li><a href="#about" class="tracking-tighter hover:underline underline-offset-2">Trabalho</a></li>
 					<li><a href="#skills" class="tracking-tighter hover:underline underline-offset-2">Skills</a></li>
 					<li><a href="#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a></li>
 				</ul>
 			</div>
+			<!-- Mobile hidden checkbox controls menu and hamburger state -->
+			<input id="nav-toggle" type="checkbox" class="peer sr-only" />
+			<!-- Mobile hamburger menu -->
+			<label for="nav-toggle" class="md:hidden absolute right-6 top-6 cursor-pointer p-2 z-50" aria-label="Alternar menu de navegação">
+				<span class="bar1 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
+				<span class="bar2 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
+				<span class="bar3 block w-6 h-0.5 bg-lime-400" aria-hidden="true"></span>
+			</label>
+			<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
+				<li><a href="#about" class="block py-2 hover:underline">Trabalho</a></li>
+				<li><a href="#skills" class="block py-2 hover:underline">Skills</a></li>
+				<li><a href="#contact" class="block py-2 hover:underline">Contato</a></li>
+			</ul>
 		</nav>
 		<main class="w-full">
 			<section id="hero" class="bg-white">
@@ -147,5 +161,18 @@ const educationContent = marked(aboutWorkContent[2]);
 				</div>
 			</footer>
 		</main>
+		<script>
+			// Close mobile checkbox menu
+			(function(){
+				const toggle = document.getElementById('nav-toggle');
+				if (!toggle) return;
+
+				const menuLinks = document.querySelectorAll('a[href^="#"]');
+				menuLinks.forEach(link => link.addEventListener('click', () => { if (toggle.checked) toggle.checked = false; }));
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && toggle.checked) toggle.checked = false;
+				});
+			})();
+		</script>
 	</body>
 </html>
