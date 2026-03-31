@@ -10,6 +10,12 @@
   --color-teal-800: #2A464F;
 }
 
+@property --angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -23,6 +29,33 @@ body {
 
 section {
   scroll-margin-top: 80px;
+}
+
+.avatar::after,
+.avatar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 108%;
+  height: 108%;
+  padding: 8px;
+  border-radius: inherit;
+  background-image: conic-gradient(from var(--angle), var(--color-lime-400), var(--color-teal-100), var(--color-lime-300), var(--color-teal-300));
+  animation: rotation 4s linear infinite;
+}
+
+.avatar::after {
+  filter: blur(16px);
+}
+
+@keyframes rotation {
+  to {
+    --angle: 360deg;
+  }
 }
 
 #about div strong {

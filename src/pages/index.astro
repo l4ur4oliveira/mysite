@@ -43,7 +43,7 @@ const rolesContent = marked(aboutWorkContent[1]);
 const educationContent = marked(aboutWorkContent[2]);
 ---
 
-<html lang="en">
+<html lang="pt-br">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
@@ -88,8 +88,8 @@ const educationContent = marked(aboutWorkContent[2]);
 							<Hero.Content />
 						</div>
 					</div>
-					<div class="w-full md:w-2/6">
-						<img src={Hero.frontmatter.photoUrl} alt={Hero.frontmatter.photoAlt} class="max-w-[200px] md:max-w-[350px] m-auto rounded-full" />
+					<div class="avatar w-auto md:w-2/6 relative rounded-full">
+						<img src={Hero.frontmatter.photoUrl} alt={Hero.frontmatter.photoAlt} class="max-w-[200px] md:max-w-[350px] m-auto rounded-full relative z-2" />
 					</div>
 				</div>
 			</section>
