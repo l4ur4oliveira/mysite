@@ -32,9 +32,12 @@ section {
 }
 
 #about ul {
-  list-style: inside;
+  list-style: outside;
+  list-style-type: square;
+  margin-left: 1.2rem;
 }
 
 #about ul li::marker {
   color: var(--color-lime-400);
+  content: "\25FC" "  ";
 }
