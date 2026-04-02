@@ -22,6 +22,8 @@ import EnvelopeSimple from 'phosphor-astro/EnvelopeSimple.astro';
 import GithubLogo from 'phosphor-astro/GithubLogo.astro';
 import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
 
+import Analytics from '@vercel/analytics/astro';
+
 const iconMap = {
 	Users,
 	ChatCircleDots,
@@ -49,6 +51,7 @@ const educationContent = marked(aboutWorkContent[2]);
 		<link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Laura de Oliveira</title>
+		<Analytics />
 	</head>
 	<body>
 		<nav class="fixed top-0 left-0 right-0 z-50 bg-black">
