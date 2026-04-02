@@ -1,5 +1,5 @@
 ---
-workTitle: "Work"
+title: "Carreira"
 ---
 
 Possuo uma combinação de habilidades em design, desenvolvimento e gestão de pessoas e projetos, que me permitiu transitar entre diferentes posições na carreira e trabalhar tanto com times de desenvolvimento quanto times multidisciplinares.

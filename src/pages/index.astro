@@ -61,8 +61,8 @@ const educationContent = marked(aboutWorkContent[2]);
 				</a>
 				<!-- Desktop links -->
 				<ul class="hidden md:flex items-center gap-9 font-oxygen-mono text-lime-400">
-					<li><a href="#about" class="tracking-tighter hover:underline underline-offset-2">Trabalho</a></li>
-					<li><a href="#skills" class="tracking-tighter hover:underline underline-offset-2">Skills</a></li>
+					<li><a href="#about" class="tracking-tighter hover:underline underline-offset-2">{AboutWork.frontmatter.title}</a></li>
+					<li><a href="#skills" class="tracking-tighter hover:underline underline-offset-2">{Skills.frontmatter.title}</a></li>
 					<li><a href="#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a></li>
 				</ul>
 			</div>
@@ -75,8 +75,8 @@ const educationContent = marked(aboutWorkContent[2]);
 				<span class="bar3 block w-6 h-0.5 bg-lime-400" aria-hidden="true"></span>
 			</label>
 			<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
-				<li><a href="#about" class="block py-2 hover:underline">Trabalho</a></li>
-				<li><a href="#skills" class="block py-2 hover:underline">Skills</a></li>
+				<li><a href="#about" class="block py-2 hover:underline">{AboutWork.frontmatter.title}</a></li>
+				<li><a href="#skills" class="block py-2 hover:underline">{Skills.frontmatter.title}</a></li>
 				<li><a href="#contact" class="block py-2 hover:underline">Contato</a></li>
 			</ul>
 		</nav>
@@ -99,7 +99,7 @@ const educationContent = marked(aboutWorkContent[2]);
 			<section id="about" class="bg-white">
 				<div class="max-w-6xl m-auto py-10 pb-20 px-6 md:px-0 flex flex-col gap-10">
 					<div>
-						<h2 class="text-4xl font-oxygen-mono text-teal-800 mb-10">{AboutWork.frontmatter.workTitle}</h2>
+						<h2 class="text-4xl font-oxygen-mono text-teal-800 mb-10">{AboutWork.frontmatter.title}</h2>
 						<div class="leading-7" set:html={workContent}></div>
 					</div>
 					<div class="w-full flex flex-col md:flex-row gap-4 md:gap-0">
@@ -110,7 +110,7 @@ const educationContent = marked(aboutWorkContent[2]);
 			</section>
 			<section id="skills" class="bg-teal-50">
 				<div class="max-w-6xl m-auto py-10 px-6 md:px-0 md:py-20">
-					<h2 class="text-4xl font-oxygen-mono text-teal-800 mb-10">{Skills.frontmatter.workTitle}</h2>
+					<h2 class="text-4xl font-oxygen-mono text-teal-800 mb-10">{Skills.frontmatter.title}</h2>
 					<div class="w-full">
 						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
 							{Skills.frontmatter.skills.map((skill) => (

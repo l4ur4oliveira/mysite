@@ -1,5 +1,5 @@
 ---
-workTitle: "Skills"
+title: "Habilidades"
 skills:
   - name: "Gestão de Pessoas"
     description: "Desenvolvimento de times com foco em autonomia, segurança psicológica e crescimento contínuo dos colaboradores."
