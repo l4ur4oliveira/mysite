@@ -3,8 +3,19 @@ import "../styles/global.css";
 import * as MyResume from '../content/resume.md';
 
 import DownloadSimple from 'phosphor-astro/DownloadSimple.astro';
+import Globe from 'phosphor-astro/Globe.astro';
+import GithubLogo from 'phosphor-astro/GithubLogo.astro';
+import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
+import MapPin from 'phosphor-astro/MapPin.astro';
 
 import Analytics from '@vercel/analytics/astro';
+
+const iconMap = {
+	Globe,
+	GithubLogo,
+	LinkedinLogo,
+	MapPin
+};
 ---
 
 <html lang="pt-br">
@@ -54,17 +65,29 @@ import Analytics from '@vercel/analytics/astro';
 		<main class="w-full">
 			<section class="max-w-4xl m-auto pt-24 md:pt-32 print:pt-0 px-4 md:px-0 mb-16 print:mb-0">
 				<div class="bg-white shadow-xl print:shadow-none rounded-lg p-8 md:p-16 print:p-10">
-					<h1 class="text-5xl md:text-6xl font-oxygen-mono text-teal-800 tracking-tighter mb-4">Laura de Oliveira</h1>
+					<h1 class="text-5xl md:text-6xl font-oxygen-mono text-teal-800 tracking-tighter mb-5">Laura de Oliveira</h1>
 
-					<div class="flex gap-4 md:gap-6 mb-12 flex-wrap font-oxygen-mono">
+					<ul class="flex flex-col gap-2 text-sm">
 						{
-							MyResume.frontmatter.links.map((link: { name: string; url: string }) => (
-								<a href={link.url} target="_blank" rel="noopener noreferrer" class="text-teal-800 hover:text-lime-600 underline underline-offset-4 transition-colors">
-									{link.name}
-								</a>
-							))
+							MyResume.frontmatter.details.map((item: { text: string; url?: string; icon: string }) => {
+								const IconCall = iconMap[item.icon];
+								return (
+									<li class="flex items-center gap-2">
+										{IconCall && <IconCall class="w-5 h-5 text-teal-800" />}
+										{item.url ? (
+											<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-teal-800 hover:text-lime-400 hover:underline transition-colors">
+												{item.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+											</a>
+										) : (
+											<span class="text-teal-800">{item.text}</span>
+										)}
+									</li>
+								);
+							})
 						}
-					</div>
+					</ul>
+
+					<hr class="border-t-2 border-lime-400 my-6 border-dashed" />
 
 					<div id="resume-content" class="text-teal-800 leading-7">
 						<MyResume.Content />

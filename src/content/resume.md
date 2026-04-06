@@ -1,11 +1,16 @@
 ---
-links:
-    - name: "LinkedIn"
+details:
+    - text: "Porto Alegre, RS, Brasil"
+      icon: "MapPin"
+    - text: "LinkedIn"
       url: "https://www.linkedin.com/in/l4ur4oliveira"
-    - name: "Site pessoal"
+      icon: "LinkedinLogo"
+    - text: "Site pessoal"
       url: "https://www.oliveilaura.com.br/"
-    - name: "GitHub"
+      icon: "Globe"
+    - text: "GitHub"
       url: "https://github.com/l4ur4oliveira"
+      icon: "GithubLogo"
 ---
 
 ## Resumo
@@ -51,7 +56,7 @@ Tenho um interesse constante em aprender — linguagens de programação, técni
   * Promovi melhorias nos processos de produção, contribuindo para a eficiência do time
 
 * **Product Owner (temporário) @ Letsbook** *(fev. 2024 – ago. 2024)*
-  * Organizei e priorizei demandas junto à equipe multidisciplinar, garantindo alinhamento das entregas
+  * Organizei e priorizei demandas junto à equipe multidisciplinar, garantindo o alinhamento nas etapas de discovery, planejamento e refinamento
   * Acompanhei indicadores operacionais para apoiar a priorização e tomada de decisão
   * Identifiquei melhorias na documentação do produto e nos processos
   * Mantive alinhada a comunicação entre stakeholders e atuei na remoção de impedimentos
@@ -61,7 +66,7 @@ Tenho um interesse constante em aprender — linguagens de programação, técni
   * Acompanhei o desempenho individual e coletivo, apoiando o desenvolvimento do time
   * Atuei na remoção de impedimentos, garantindo a continuidade dos fluxos de trabalho
   * Conduzi melhorias nos processos de produção e incentivei a inovação no time
-  * Atuei como tutora de estagiários de desenvolvimento
+  * Atuei como tutora de estagiários em desenvolvimento
 
 * **Analista de Programação @ Pmweb** *(nov. 2012 – mar. 2016)*
   * Atuei como líder técnica da equipe, apoiando decisões técnicas e priorizando demandas de desenvolvimento
