@@ -1,6 +1,9 @@
 ---
 import "../styles/global.css";
 import * as MyResume from '../content/resume.md';
+
+import DownloadSimple from 'phosphor-astro/DownloadSimple.astro';
+
 import Analytics from '@vercel/analytics/astro';
 ---
 
@@ -68,6 +71,9 @@ import Analytics from '@vercel/analytics/astro';
 					</div>
 				</div>
 			</section>
+			<button onclick="window.print()" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 bg-lime-400 text-teal-800 p-4 rounded-full shadow-lg hover:brightness-120 hover:-translate-y-1 transition-all print:hidden flex items-center justify-center cursor-pointer" aria-label="Imprimir ou baixar currículo" title="Baixar currículo">
+				<DownloadSimple class="w-7 h-7" />
+			</button>
 			<footer class="bg-black print:hidden">
 				<div class="max-w-6xl m-auto py-6 text-center font-oxygen-mono">
 					<div class="text-lime-400 flex items-center justify-center gap-2">
