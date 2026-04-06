@@ -1,0 +1,128 @@
+---
+import "../styles/global.css";
+import * as MyResume from '../content/resume.md';
+
+import DownloadSimple from 'phosphor-astro/DownloadSimple.astro';
+import Globe from 'phosphor-astro/Globe.astro';
+import GithubLogo from 'phosphor-astro/GithubLogo.astro';
+import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
+import MapPin from 'phosphor-astro/MapPin.astro';
+
+import Analytics from '@vercel/analytics/astro';
+
+const iconMap = {
+	Globe,
+	GithubLogo,
+	LinkedinLogo,
+	MapPin
+};
+---
+
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Résumé | Laura de Oliveira</title>
+		<Analytics />
+	</head>
+	<body class="bg-teal-50">
+		<nav class="fixed top-0 left-0 right-0 z-50 bg-black print:hidden">
+			<div class="max-w-6xl m-auto px-6 md:px-0 py-6 flex items-center justify-between">
+				<a href="/" class="flex items-center gap-3">
+					<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
+				</a>
+				<ul class="hidden md:flex items-center gap-9 font-oxygen-mono text-lime-400">
+					<li>
+						<a href="/#about" class="tracking-tighter hover:underline underline-offset-2">Sobre</a>
+					</li>
+					<li>
+						<a href="/#skills" class="tracking-tighter hover:underline underline-offset-2">Skills</a>
+					</li>
+					<li>
+						<a href="/#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a>
+					</li>
+				</ul>
+			</div>
+			<input id="nav-toggle" type="checkbox" class="peer sr-only" />
+			<label for="nav-toggle" class="md:hidden absolute right-6 top-6 cursor-pointer p-2 z-50" aria-label="Alternar menu de navegação">
+				<span class="bar1 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
+				<span class="bar2 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
+				<span class="bar3 block w-6 h-0.5 bg-lime-400" aria-hidden="true"></span>
+			</label>
+			<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
+				<li>
+					<a href="/#about" class="block py-2 hover:underline">Sobre</a>
+				</li>
+				<li>
+					<a href="/#skills" class="block py-2 hover:underline">Skills</a>
+				</li>
+				<li>
+					<a href="/#contact" class="block py-2 hover:underline">Contato</a>
+				</li>
+			</ul>
+		</nav>
+		<main class="w-full">
+			<section class="max-w-4xl m-auto pt-24 md:pt-32 print:pt-0 px-4 md:px-0 mb-16 print:mb-0">
+				<div class="bg-white shadow-xl print:shadow-none rounded-lg p-8 md:p-16 print:p-10">
+					<h1 class="text-5xl md:text-6xl font-oxygen-mono text-teal-800 tracking-tighter mb-5">Laura de Oliveira</h1>
+
+					<ul class="flex flex-col gap-2 text-sm">
+						{
+							MyResume.frontmatter.details.map((item: { text: string; url?: string; icon: string }) => {
+								const IconCall = iconMap[item.icon];
+								return (
+									<li class="flex items-center gap-2">
+										{IconCall && <IconCall class="w-5 h-5 text-teal-800" />}
+										{item.url ? (
+											<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-teal-800 hover:text-lime-400 hover:underline transition-colors">
+												{item.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+											</a>
+										) : (
+											<span class="text-teal-800">{item.text}</span>
+										)}
+									</li>
+								);
+							})
+						}
+					</ul>
+
+					<hr class="border-t-2 border-lime-400 my-6 border-dashed" />
+
+					<div id="resume-content" class="text-teal-800 leading-7">
+						<MyResume.Content />
+					</div>
+				</div>
+			</section>
+			<button onclick="window.print()" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 bg-lime-400 text-teal-800 p-4 rounded-full shadow-lg hover:brightness-120 hover:-translate-y-1 transition-all print:hidden flex items-center justify-center cursor-pointer" aria-label="Imprimir ou baixar currículo" title="Baixar currículo">
+				<DownloadSimple class="w-7 h-7" />
+			</button>
+			<footer class="bg-black print:hidden">
+				<div class="max-w-6xl m-auto py-6 text-center font-oxygen-mono">
+					<div class="text-lime-400 flex items-center justify-center gap-2">
+						<span>&copy; {new Date().getFullYear()}</span>
+						<span class="inline-block w-5 h-5" style="-webkit-mask: url('/olive-leaf.svg') no-repeat center/contain; mask: url('/olive-leaf.svg') no-repeat center/contain; background-color: currentColor;" aria-hidden="true"></span>
+						<span>l4uOliveira</span>
+					</div>
+				</div>
+			</footer>
+		</main>
+		<script>
+			// Close mobile checkbox menu
+			(function () {
+				const toggle = document.getElementById("nav-toggle");
+				if (!toggle) return;
+
+				const menuLinks = document.querySelectorAll('a[href^="#"]');
+				menuLinks.forEach((link) =>
+					link.addEventListener("click", () => {
+						if (toggle.checked) toggle.checked = false;
+					}),
+				);
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && toggle.checked) toggle.checked = false;
+				});
+			})();
+		</script>
+	</body>
+</html>

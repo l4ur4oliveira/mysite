@@ -64,15 +64,49 @@ section {
   line-height: 3rem;
 }
 
-#about ul {
+#about ul,
+#resume-content ul {
   list-style: outside;
   list-style-type: square;
   margin-left: 1.2rem;
 }
 
-#about ul li::marker {
+#about ul li::marker,
+#resume-content ul li::marker {
   color: var(--color-lime-400);
   content: "\25FC" "  ";
+}
+
+#resume-content h2 {
+  font-family: var(--font-oxygen-mono);
+  font-size: 2.25rem;
+  color: var(--color-teal-800);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+#resume-content h3,
+#resume-content p {
+  margin-bottom: 1rem;
+}
+
+#resume-content em {
+  color: lightslategray;
+}
+
+#resume-content ul ul {
+  margin-top: 0.5rem;
+  margin-left: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+#resume-content ul ul li::marker {
+  color: var(--color-teal-800);
+  content: "\2022" "  ";
+}
+
+#resume-content strong {
+  color: var(--color-teal-800);
 }
 
 @media (max-width: 767px) {
