@@ -9,6 +9,7 @@ import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
 import MapPin from 'phosphor-astro/MapPin.astro';
 
 import Analytics from '@vercel/analytics/astro';
+import SEO from '../components/SEO.astro';
 
 const iconMap = {
 	Globe,
@@ -23,7 +24,7 @@ const iconMap = {
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<title>Résumé | Laura de Oliveira</title>
+		<SEO title="Laura de Oliveira | Résumé" />
 		<Analytics />
 	</head>
 	<body class="bg-teal-50">
