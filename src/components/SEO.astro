@@ -1,0 +1,36 @@
+---
+export interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+
+const {
+	title = "Laura de Oliveira | Tech, People & Products",
+	description = "Software Team Manager com experiência em gestão de pessoas e produtos. Conheça meus projetos e trajetória.",
+	image = "https://www.oliveilaura.com.br/social-preview.jpg",
+} = Astro.props;
+
+const url = new URL(Astro.url.pathname, "https://www.oliveilaura.com.br/").href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<meta property="og:site_name" content="Laura de Oliveira" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:image:secure_url" content={image} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Foto de Laura de Oliveira sobre um design moderno onde se lê Tech, People & Products." />
+<meta property="og:locale" content="pt_BR" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
