@@ -88,3 +88,8 @@ Tenho um interesse constante em aprender — linguagens de programação, técni
   - 2020 – 2021: MBA em Educação Corporativa e Gestão do Conhecimento, Estácio
   - 2015 – 2016: MBA em Gestão de Projetos, Universidade do Vale do Rio dos Sinos
   - 2007 – 2011: Bacharel em Sistemas de Informação, Universidade do Sul de Santa Catarina
+
+## Idiomas
+
+  - Português – Nativo
+  - Inglês – Intermediário/B2 (work in progress)
