@@ -1,13 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Oxygen+Mono&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-oxygen-mono: 'Oxygen Mono', monospace;
   --font-open-sans: 'Open Sans', sans-serif;
 
   --color-lime-400: #79F67A;
   --color-teal-50: #F7F8F9;
+  --color-teal-100: #eaf1f3;
+  --color-teal-200: #ccdfe4;
+  --color-teal-300: #a3c4cd;
+  --color-teal-400: #74a3b1;
+  --color-teal-500: #528696;
+  --color-teal-600: #426b78;
+  --color-teal-700: #365761;
   --color-teal-800: #2A464F;
+  --color-teal-900: #213941;
+  --color-teal-950: #14242a;
 }
 
 @property --angle {
@@ -64,6 +75,10 @@ section {
   line-height: 3rem;
 }
 
+.dark #about div strong {
+  color: var(--color-teal-100);
+}
+
 #about ul,
 #resume-content ul {
   list-style: outside;
@@ -83,6 +98,10 @@ section {
   color: var(--color-teal-800);
   margin-top: 3rem;
   margin-bottom: 1.5rem;
+}
+
+.dark #resume-content h2 {
+  color: var(--color-teal-100);
 }
 
 #resume-content h3,
@@ -105,8 +124,16 @@ section {
   content: "\2022" "  ";
 }
 
+.dark #resume-content ul ul li::marker {
+  color: var(--color-teal-100);
+}
+
 #resume-content strong {
   color: var(--color-teal-800);
+}
+
+.dark #resume-content strong {
+  color: var(--color-teal-100);
 }
 
 @media (max-width: 767px) {
