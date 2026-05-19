@@ -2,6 +2,8 @@
 details:
     - text: "Porto Alegre, RS, Brasil"
       icon: "MapPin"
+    - text: "l4ur4.88@gmail.com"
+      icon: "EnvelopeSimple"
     - text: "LinkedIn"
       url: "https://www.linkedin.com/in/l4ur4oliveira"
       icon: "LinkedinLogo"
@@ -27,13 +29,13 @@ Com background em front-end, tomo decisões alinhadas ao contexto técnico e atu
 
 ## Competências
 
-🧩 Organização e processos — estruturação de fluxos e melhoria contínua
-💬 Comunicação — alinhamento entre times e feedbacks
-⭐ Liderança — condução de equipes com foco em entrega e crescimento
-👥 Gestão de pessoas — liderança de times multidisciplinares de SE e QA
-💡 Produtos digitais — evolução de soluções orientadas a valor
-💻 Engenharia de software — background em front-end e stacks modernas
-🤖 Vibe coding — utilização de agentes autônomos e AI no desenvolvimento de software
+- Organização e processos — estruturação de fluxos e melhoria contínua
+- Comunicação — alinhamento entre times e feedbacks
+- Liderança — condução de equipes com foco em entrega e crescimento
+- Gestão de pessoas — liderança de times multidisciplinares de SE e QA
+- Produtos digitais — evolução de soluções orientadas a valor
+- Engenharia de software — background em front-end e stacks modernas
+- Vibe coding — utilização de agentes autônomos e AI no desenvolvimento de software
 
 ## Experiência
 

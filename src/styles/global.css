@@ -89,6 +89,9 @@ section {
 #about ul li::marker,
 #resume-content ul li::marker {
   color: var(--color-lime-400);
+}
+
+#about ul li::marker {
   content: "\25FC" "  ";
 }
 
@@ -117,11 +120,11 @@ section {
   margin-top: 0.5rem;
   margin-left: 1.2rem;
   margin-bottom: 1.5rem;
+  list-style-type: disc;
 }
 
 #resume-content ul ul li::marker {
   color: var(--color-teal-800);
-  content: "\2022" "  ";
 }
 
 .dark #resume-content ul ul li::marker {
