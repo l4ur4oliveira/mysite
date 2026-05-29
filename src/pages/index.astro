@@ -6,6 +6,9 @@ import * as Skills from '../content/skills.md';
 
 import { marked } from "marked";
 
+import CaretDoubleDown from 'phosphor-astro/CaretDoubleDown.astro';
+import { formatDateShort } from '../lib/format-date.js';
+
 import ChatCircleDots from 'phosphor-astro/ChatCircleDots.astro';
 import Clock from 'phosphor-astro/Clock.astro';
 import Code from 'phosphor-astro/Code.astro';
@@ -46,6 +49,23 @@ const aboutWorkContent = AboutWork.rawContent().split('<!-- split -->');
 const workContent = marked(aboutWorkContent[0]);
 const rolesContent = marked(aboutWorkContent[1]);
 const educationContent = marked(aboutWorkContent[2]);
+
+const allPosts = (await Astro.glob('../content/posts/*.md'))
+	.sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
+
+const posts = allPosts.map((post, i) => {
+	const slug = post.file.split('/').pop().replace('.md', '');
+	return { post, index: i, hidden: i >= 6, slug };
+});
+
+const grouped = {};
+posts.forEach(p => {
+	const year = p.post.frontmatter.date.split('-')[0];
+	if (!grouped[year]) grouped[year] = [];
+	grouped[year].push(p);
+});
+const years = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+const hasHidden = posts.some(p => p.hidden);
 ---
 
 <html lang="pt-br">
@@ -74,6 +94,7 @@ const educationContent = marked(aboutWorkContent[2]);
 					<ul class="flex items-center gap-9 font-oxygen-mono">
 						<li><a href="#about" class="tracking-tighter hover:underline underline-offset-2">{AboutWork.frontmatter.title}</a></li>
 						<li><a href="#skills" class="tracking-tighter hover:underline underline-offset-2">{Skills.frontmatter.title}</a></li>
+						<li><a href="#posts" class="tracking-tighter hover:underline underline-offset-2">Posts</a></li>
 						<li><a href="#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a></li>
 					</ul>
 					<button id="theme-toggle-desktop" class="p-2 ml-4 hover:text-white transition-colors outline-none cursor-pointer" aria-label="Toggle theme">
@@ -93,6 +114,7 @@ const educationContent = marked(aboutWorkContent[2]);
 			<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
 				<li><a href="#about" class="block py-2 hover:underline">{AboutWork.frontmatter.title}</a></li>
 				<li><a href="#skills" class="block py-2 hover:underline">{Skills.frontmatter.title}</a></li>
+				<li><a href="#posts" class="block py-2 hover:underline">Posts</a></li>
 				<li><a href="#contact" class="block py-2 hover:underline">Contato</a></li>
 			</ul>
 			<button id="theme-toggle-mobile" class="md:hidden absolute right-4 top-5 cursor-pointer p-2 z-50 text-lime-400 hover:text-white transition-colors outline-none" aria-label="Toggle theme">
@@ -159,20 +181,55 @@ const educationContent = marked(aboutWorkContent[2]);
 					</div>
 				</div>
 			</section>
-			<section id="contact" class="bg-white dark:bg-teal-950 transition-colors duration-300">
+			<section id="posts" class="bg-white dark:bg-teal-950 transition-colors duration-300">
+				<div class="max-w-6xl m-auto px-6 py-10 md:py-20">
+					<h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-4 transition-colors duration-300">Posts</h2>
+					<p class="text-teal-800 dark:text-teal-300 mb-10 leading-7 transition-colors duration-300">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</p>
+					<div id="posts-list">
+						{years.map(year => {
+							const yearAllHidden = grouped[year].every(({ hidden }) => hidden);
+							return (
+							<div class:list={{ 'mb-8 last:mb-0': true, 'hidden-post': yearAllHidden }}>
+								<h3 class="text-2xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-4 transition-colors duration-300">{year}</h3>
+								<ul class="space-y-3">
+									{grouped[year].map(({ post, hidden, slug }) => (
+										<li class:list={{ 'hidden-post': hidden }} class="flex items-baseline gap-6">
+											<span class="inline-block w-[6ch] font-oxygen-mono text-sm text-teal-600 dark:text-teal-400 whitespace-nowrap">{formatDateShort(post.frontmatter.date)}</span>
+											<a href={`/posts/${slug}`} class="text-teal-800 dark:text-teal-200 hover:text-lime-400 dark:hover:text-lime-400 transition-colors underline-offset-2 hover:underline">
+												{post.frontmatter.title}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+							);
+						})}
+					</div>
+					{hasHidden && (
+						<div class="flex justify-center mt-8">
+							<button id="posts-toggle" class="cursor-pointer text-teal-600 dark:text-teal-400 hover:text-lime-400 dark:hover:text-lime-400 transition-colors p-2 outline-none" aria-label="Mostrar mais posts">
+								<CaretDoubleDown id="posts-toggle-icon" class="w-8 h-8 transition-transform duration-300" />
+							</button>
+						</div>
+					)}
+				</div>
+			</section>
+			<section id="contact" class="bg-teal-50 dark:bg-teal-900 transition-colors duration-300">
 				<div class="max-w-6xl m-auto px-6 py-20">
 					<h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-6 transition-colors duration-300">Entre em contato</h2>
 					<p class="text-teal-800 dark:text-teal-300 mb-8 transition-colors duration-300">Aberta a novas conexões, parcerias e oportunidades. Entre em contato e vamos construir algo juntos.</p>
 					<div class="flex flex-col md:flex-row items-center md:items-start gap-4">
-						<a href="https://www.linkedin.com/in/l4ur4oliveira/" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 dark:hover:bg-lime-400 dark:bg-teal-900 text-teal-800 dark:text-teal-100 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200">
+						<a href="https://www.linkedin.com/in/l4ur4oliveira/" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 dark:hover:bg-lime-400 dark:bg-teal-800 text-teal-800 dark:text-teal-100 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200">
 							<LinkedinLogo class="w-6 h-6" />
 							<span class="font-oxygen-mono">LinkedIn</span>
 						</a>
-						<a href="https://github.com/l4ur4oliveira" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 dark:hover:bg-lime-400 dark:bg-teal-900 text-teal-800 dark:text-teal-100 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200">
+						<a href="https://github.com/l4ur4oliveira" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 dark:hover:bg-lime-400 dark:bg-teal-800 text-teal-800 dark:text-teal-100 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200">
 							<GithubLogo class="w-6 h-6" />
 							<span class="font-oxygen-mono">GitHub</span>
 						</a>
-						<a href="mailto:l4ur4.88@gmail.com" class="w-full md:w-auto flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 dark:hover:bg-lime-400 dark:bg-teal-900 text-teal-800 dark:text-teal-100 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200">
+						<a href="mailto:l4ur4.88@gmail.com" class="w-full md:w-auto flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md hover:bg-lime-400 dark:hover:bg-lime-400 dark:bg-teal-800 text-teal-800 dark:text-teal-100 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200">
 							<EnvelopeSimple class="w-6 h-6" />
 							<span class="font-oxygen-mono">Email</span>
 						</a>
@@ -218,6 +275,12 @@ const educationContent = marked(aboutWorkContent[2]);
 					if (e.key === 'Escape' && toggle.checked) toggle.checked = false;
 				});
 			})();
+
+			// Expand/collapse posts
+			document.getElementById('posts-toggle')?.addEventListener('click', () => {
+				document.getElementById('posts-list')?.classList.toggle('posts-expanded');
+				document.getElementById('posts-toggle-icon')?.classList.toggle('rotate-180');
+			});
 		</script>
 	</body>
 </html>

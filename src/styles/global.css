@@ -139,6 +139,150 @@ section {
   color: var(--color-teal-100);
 }
 
+.hidden-post {
+  display: none;
+}
+
+.posts-expanded .hidden-post {
+  display: block;
+}
+
+.posts-expanded li.hidden-post {
+  display: flex;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+#post-content h2 {
+  font-family: var(--font-oxygen-mono);
+  font-size: 1.875rem;
+  color: var(--color-teal-800);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.dark #post-content h2 {
+  color: var(--color-teal-100);
+}
+
+#post-content h3 {
+  font-size: 1.5rem;
+  color: var(--color-teal-800);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.dark #post-content h3 {
+  color: var(--color-teal-100);
+}
+
+#post-content p {
+  margin-bottom: 1rem;
+}
+
+#post-content ul,
+#post-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#post-content ul {
+  list-style: disc;
+}
+
+#post-content ol {
+  list-style: decimal;
+}
+
+#post-content li {
+  margin-bottom: 0.25rem;
+}
+
+#post-content ul li::marker,
+#post-content ol li::marker {
+  color: var(--color-lime-400);
+}
+
+#post-content strong {
+  color: var(--color-teal-800);
+}
+
+.dark #post-content strong {
+  color: var(--color-teal-100);
+}
+
+#post-content blockquote {
+  border-left: 4px solid var(--color-lime-400);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--color-teal-600);
+  font-style: italic;
+}
+
+.dark #post-content blockquote {
+  color: var(--color-teal-400);
+}
+
+#post-content code {
+  background-color: var(--color-teal-100);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.dark #post-content code {
+  background-color: var(--color-teal-800);
+}
+
+#post-content pre {
+  background-color: var(--color-teal-100);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.dark #post-content pre {
+  background-color: var(--color-teal-800);
+}
+
+#post-content pre code {
+  background: none;
+  padding: 0;
+}
+
+#post-content a {
+  color: var(--color-teal-800);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dark #post-content a {
+  color: var(--color-teal-200);
+}
+
+#post-content a:hover {
+  color: var(--color-lime-400);
+}
+
+.dark #post-content a:hover {
+  color: var(--color-lime-400);
+}
+
+#post-content img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+#post-content hr {
+  border: none;
+  border-top: 2px dashed var(--color-lime-400);
+  margin: 2rem 0;
+}
+
 @media (max-width: 767px) {
   #nav-toggle:checked~label .bar1 {
     transform: translateY(6px) rotate(45deg);
