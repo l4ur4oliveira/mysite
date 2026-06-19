@@ -183,10 +183,7 @@ const hasHidden = posts.some(p => p.hidden);
 			</section>
 			<section id="posts" class="bg-white dark:bg-teal-950 transition-colors duration-300">
 				<div class="max-w-6xl m-auto px-6 py-10 md:py-20">
-					<h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-4 transition-colors duration-300">Posts</h2>
-					<p class="text-teal-800 dark:text-teal-300 mb-10 leading-7 transition-colors duration-300">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					</p>
+					<h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-10 transition-colors duration-300">Posts</h2>
 					<div id="posts-list">
 						{years.map(year => {
 							const yearAllHidden = grouped[year].every(({ hidden }) => hidden);
