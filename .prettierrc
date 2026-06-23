@@ -1,5 +1,8 @@
 {
   "printWidth": 1000,
   "htmlWhitespaceSensitivity": "ignore",
-  "quoteProps": "ignore"
+  "quotes": "double",
+  "quoteProps": "consistent",
+  "tabWidth": 2,
+  "proseWrap": "ignore"
 }

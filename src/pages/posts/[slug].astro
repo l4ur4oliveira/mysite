@@ -1,23 +1,37 @@
 ---
 import "../../styles/global.css";
 
-import Navbar from '../../components/Navbar.astro';
-import SEO from '../../components/SEO.astro';
-import { formatDateLong } from '../../lib/format-date.js';
+import Navbar from "../../components/Navbar.astro";
+import SEO from "../../components/SEO.astro";
+import { formatDateLong } from "../../lib/format-date.ts";
 
-import Analytics from '@vercel/analytics/astro';
+import Analytics from "@vercel/analytics/astro";
 
-import ArrowLeft from 'phosphor-astro/ArrowLeft.astro';
+import ArrowLeft from "phosphor-astro/ArrowLeft.astro";
 
-export async function getStaticPaths() {
-	const posts = await Astro.glob('../../content/posts/*.md');
-	return posts.map((post) => {
-		const slug = post.file.split('/').pop().replace('.md', '');
-		return {
-			params: { slug },
-			props: { post },
-		};
-	});
+import type { GetStaticPathsResult, MarkdownInstance } from "astro";
+
+type PostFrontmatter = {
+  title: string;
+  date: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  imageAuthor?: string;
+};
+
+export interface Props {
+  post: MarkdownInstance<PostFrontmatter>;
+}
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  const posts = await Astro.glob<PostFrontmatter>("../../content/posts/*.md");
+  return posts.map((post) => {
+    const slug = post.file.split("/").pop()!.replace(".md", "");
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
 }
 
 const { post } = Astro.props;
@@ -26,53 +40,53 @@ const { title, date, imageUrl, imageAlt, imageAuthor } = frontmatter;
 ---
 
 <html lang="pt-br">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<SEO title={`${title} | Laura de Oliveira`} image={imageUrl} />
-		<Analytics />
-		<script is:inline>
-			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-		</script>
-	</head>
-	<body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
-		<Navbar />
-		<main class="w-full">
-			<article class="max-w-3xl m-auto px-6 pt-28 md:pt-36 pb-20">
-				<a href="/#posts" class="inline-flex items-center gap-1 text-teal-600 dark:text-teal-400 hover:text-lime-400 dark:hover:text-lime-400 transition-colors font-oxygen-mono text-sm mb-8">
-					<ArrowLeft class="w-4 h-4" />
-					Voltar
-				</a>
-				<h1 class="text-4xl md:text-5xl font-oxygen-mono text-teal-800 dark:text-lime-400 leading-tight mb-4 transition-colors duration-300">{title}</h1>
-				<p class="text-teal-600 dark:text-teal-400 text-sm font-oxygen-mono mb-8">{formatDateLong(date)}</p>
-				{imageUrl && (
-					<figure class="mb-8">
-						<div class="w-full max-h-[280px] md:max-h-[400px] overflow-y-hidden rounded-lg shadow-md">
-							<img src={imageUrl} alt={imageAlt} class="w-full" loading="lazy" />
-						</div>
-						{imageAuthor && (
-							<figcaption class="text-teal-500 dark:text-teal-500 text-xs mt-2 text-right">{imageAuthor}</figcaption>
-						)}
-					</figure>
-				)}
-				<div id="post-content" class="leading-7 text-teal-800 dark:text-teal-300">
-					<Content />
-				</div>
-			</article>
-			<footer class="bg-black">
-				<div class="max-w-6xl m-auto px-6 py-6 text-center font-oxygen-mono">
-					<div class="text-lime-400 flex items-center justify-center gap-2">
-						<span>&copy; {new Date().getFullYear()}</span>
-						<span class="inline-block w-5 h-5" style="-webkit-mask: url('/olive-leaf.svg') no-repeat center/contain; mask: url('/olive-leaf.svg') no-repeat center/contain; background-color: currentColor;" aria-hidden="true"></span>
-						<span>l4uOliveira</span>
-					</div>
-				</div>
-			</footer>
-		</main>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <SEO title={`${title} | Laura de Oliveira`} image={imageUrl} />
+    <Analytics />
+    <script is:inline>
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
+    <Navbar />
+    <main class="w-full">
+      <article class="max-w-3xl m-auto px-6 pt-28 md:pt-36 pb-20">
+        <a href="/#posts" class="inline-flex items-center gap-1 text-teal-600 dark:text-teal-400 hover:text-lime-400 dark:hover:text-lime-400 transition-colors font-oxygen-mono text-sm mb-8">
+          <ArrowLeft class="w-4 h-4" />
+          Voltar
+        </a>
+        <h1 class="text-4xl md:text-5xl font-oxygen-mono text-teal-800 dark:text-lime-400 leading-tight mb-4 transition-colors duration-300">{title}</h1>
+        <p class="text-teal-600 dark:text-teal-400 text-sm font-oxygen-mono mb-8">{formatDateLong(date)}</p>
+        {
+          imageUrl && (
+            <figure class="mb-8">
+              <div class="w-full max-h-[280px] md:max-h-[400px] overflow-y-hidden rounded-lg shadow-md">
+                <img src={imageUrl} alt={imageAlt} class="w-full" loading="lazy" />
+              </div>
+              {imageAuthor && <figcaption class="text-teal-500 dark:text-teal-500 text-xs mt-2 text-right">{imageAuthor}</figcaption>}
+            </figure>
+          )
+        }
+        <div id="post-content" class="leading-7 text-teal-800 dark:text-teal-300">
+          <Content />
+        </div>
+      </article>
+      <footer class="bg-black">
+        <div class="max-w-6xl m-auto px-6 py-6 text-center font-oxygen-mono">
+          <div class="text-lime-400 flex items-center justify-center gap-2">
+            <span>&copy; {new Date().getFullYear()}</span>
+            <span class="inline-block w-5 h-5" style="-webkit-mask: url('/olive-leaf.svg') no-repeat center/contain; mask: url('/olive-leaf.svg') no-repeat center/contain; background-color: currentColor;" aria-hidden="true"></span>
+            <span>l4uOliveira</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
 </html>
