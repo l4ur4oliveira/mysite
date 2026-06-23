@@ -1,27 +1,25 @@
 ---
 import "../styles/global.css";
-import * as AboutWork from '../content/about-and-work.md';
-import * as Skills from '../content/skills.md';
 import * as MyResume from '../content/resume.md';
 
-import DownloadSimple from 'phosphor-astro/DownloadSimple.astro';
-import Globe from 'phosphor-astro/Globe.astro';
-import GithubLogo from 'phosphor-astro/GithubLogo.astro';
-import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
-import MapPin from 'phosphor-astro/MapPin.astro';
-import Sun from 'phosphor-astro/Sun.astro';
-import Moon from 'phosphor-astro/Moon.astro';
+import SEO from '../components/SEO.astro';
+import Navbar from '../components/Navbar.astro';
 
 import Analytics from '@vercel/analytics/astro';
-import SEO from '../components/SEO.astro';
+
+import DownloadSimple from 'phosphor-astro/DownloadSimple.astro';
 import EnvelopeSimple from "phosphor-astro/EnvelopeSimple.astro";
+import GithubLogo from 'phosphor-astro/GithubLogo.astro';
+import Globe from 'phosphor-astro/Globe.astro';
+import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
+import MapPin from 'phosphor-astro/MapPin.astro';
 
 const iconMap = {
 	EnvelopeSimple,
-	Globe,
 	GithubLogo,
+	Globe,
 	LinkedinLogo,
-	MapPin
+	MapPin,
 };
 ---
 
@@ -41,44 +39,7 @@ const iconMap = {
 		</script>
 	</head>
 	<body class="bg-teal-50 dark:bg-teal-950 text-teal-950 dark:text-teal-300">
-		<nav class="fixed top-0 left-0 right-0 z-50 bg-black print:hidden">
-			<div class="max-w-6xl m-auto px-6 md:px-0 py-6 flex items-center justify-between">
-				<a href="/" class="flex items-center gap-3">
-					<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
-				</a>
-				<!-- Desktop links -->
-				<div class="hidden md:flex items-center gap-4 text-lime-400">
-					<ul class="flex items-center gap-9 font-oxygen-mono">
-						<li><a href="/#about" class="tracking-tighter hover:underline underline-offset-2">{AboutWork.frontmatter.title}</a></li>
-						<li><a href="/#skills" class="tracking-tighter hover:underline underline-offset-2">{Skills.frontmatter.title}</a></li>
-						<li><a href="/#posts" class="tracking-tighter hover:underline underline-offset-2">Posts</a></li>
-						<li><a href="/#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a></li>
-					</ul>
-					<button id="theme-toggle-desktop" class="p-2 ml-4 hover:text-white transition-colors outline-none cursor-pointer" aria-label="Toggle theme">
-						<Sun class="w-6 h-6 hidden dark:block" />
-						<Moon class="w-6 h-6 block dark:hidden" />
-					</button>
-				</div>
-			</div>
-			<!-- Mobile hidden checkbox controls menu and hamburger state -->
-			<input id="nav-toggle" type="checkbox" class="peer sr-only" />
-			<!-- Mobile hamburger menu -->
-			<label for="nav-toggle" class="md:hidden absolute right-16 top-6 cursor-pointer p-2 z-50" aria-label="Alternar menu de navegação">
-				<span class="bar1 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
-				<span class="bar2 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
-				<span class="bar3 block w-6 h-0.5 bg-lime-400" aria-hidden="true"></span>
-			</label>
-			<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
-				<li><a href="/#about" class="block py-2 hover:underline">{AboutWork.frontmatter.title}</a></li>
-				<li><a href="/#skills" class="block py-2 hover:underline">{Skills.frontmatter.title}</a></li>
-				<li><a href="/#posts" class="block py-2 hover:underline">Posts</a></li>
-				<li><a href="/#contact" class="block py-2 hover:underline">Contato</a></li>
-			</ul>
-			<button id="theme-toggle-mobile" class="md:hidden absolute right-4 top-5 cursor-pointer p-2 z-50 text-lime-400 hover:text-white transition-colors outline-none" aria-label="Toggle theme">
-				<Sun class="w-6 h-6 hidden dark:block" />
-				<Moon class="w-6 h-6 block dark:hidden" />
-			</button>
-		</nav>
+		<Navbar printHidden />
 		<main class="w-full">
 			<section class="max-w-4xl m-auto pt-24 md:pt-32 print:pt-0 px-4 md:px-0 mb-16 print:mb-0 transition-colors duration-300">
 				<div class="bg-white dark:bg-teal-900 shadow-xl print:shadow-none rounded-lg p-8 md:p-16 print:p-10 transition-colors duration-300">
@@ -124,35 +85,5 @@ const iconMap = {
 				</div>
 			</footer>
 		</main>
-		<script>
-			const handleToggleClick = () => {
-				const element = document.documentElement;
-				element.classList.toggle("dark");
-			}
-
-			document.getElementById("theme-toggle-desktop")?.addEventListener("click", handleToggleClick);
-			document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggleClick);
-
-			// Automatically adapt to OS changes dynamically
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-				if (e.matches) {
-					document.documentElement.classList.add('dark');
-				} else {
-					document.documentElement.classList.remove('dark');
-				}
-			});
-
-			// Close mobile checkbox menu
-			(function(){
-				const toggle = document.getElementById('nav-toggle');
-				if (!toggle) return;
-
-				const menuLinks = document.querySelectorAll('a[href^="#"]');
-				menuLinks.forEach(link => link.addEventListener('click', () => { if (toggle.checked) toggle.checked = false; }));
-				document.addEventListener('keydown', (e) => {
-					if (e.key === 'Escape' && toggle.checked) toggle.checked = false;
-				});
-			})();
-		</script>
 	</body>
 </html>
