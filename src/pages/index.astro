@@ -4,45 +4,44 @@ import * as Hero from '../content/hero.md';
 import * as AboutWork from '../content/about-and-work.md';
 import * as Skills from '../content/skills.md';
 
+import Navbar from '../components/Navbar.astro';
+import SEO from '../components/SEO.astro';
+import { formatDateShort } from '../lib/format-date.js';
+
+import Analytics from '@vercel/analytics/astro';
+
 import { marked } from "marked";
 
 import CaretDoubleDown from 'phosphor-astro/CaretDoubleDown.astro';
-import { formatDateShort } from '../lib/format-date.js';
-
 import ChatCircleDots from 'phosphor-astro/ChatCircleDots.astro';
 import Clock from 'phosphor-astro/Clock.astro';
 import Code from 'phosphor-astro/Code.astro';
+import EnvelopeSimple from 'phosphor-astro/EnvelopeSimple.astro';
 import FigmaLogo from 'phosphor-astro/FigmaLogo.astro';
 import FileJs from 'phosphor-astro/FileJs.astro';
 import GitBranch from 'phosphor-astro/GitBranch.astro';
-import Layout from 'phosphor-astro/Layout.astro';
+import GithubLogo from 'phosphor-astro/GithubLogo.astro';
 import Kanban from 'phosphor-astro/Kanban.astro';
+import Layout from 'phosphor-astro/Layout.astro';
+import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
 import Palette from 'phosphor-astro/Palette.astro';
 import PresentationChart from 'phosphor-astro/PresentationChart.astro';
 import TrendUp from 'phosphor-astro/TrendUp.astro';
 import Users from 'phosphor-astro/Users.astro';
-import EnvelopeSimple from 'phosphor-astro/EnvelopeSimple.astro';
-import GithubLogo from 'phosphor-astro/GithubLogo.astro';
-import LinkedinLogo from 'phosphor-astro/LinkedinLogo.astro';
-import Sun from 'phosphor-astro/Sun.astro';
-import Moon from 'phosphor-astro/Moon.astro';
-
-import Analytics from '@vercel/analytics/astro';
-import SEO from '../components/SEO.astro';
 
 const iconMap = {
-	Users,
 	ChatCircleDots,
-	TrendUp,
-	Kanban,
 	Clock,
-	PresentationChart,
 	Code,
 	GitBranch,
 	FileJs,
 	FigmaLogo,
+	Kanban,
+	Layout,
 	Palette,
-	Layout
+	PresentationChart,
+	TrendUp,
+	Users,
 };
 
 const aboutWorkContent = AboutWork.rawContent().split('<!-- split -->');
@@ -84,44 +83,7 @@ const hasHidden = posts.some(p => p.hidden);
 		</script>
 	</head>
 	<body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
-		<nav class="fixed top-0 left-0 right-0 z-50 bg-black">
-			<div class="max-w-6xl m-auto px-6 py-6 flex items-center justify-between">
-				<a href="#hero" class="flex items-center gap-3">
-					<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
-				</a>
-				<!-- Desktop links -->
-				<div class="hidden md:flex items-center gap-4 text-lime-400">
-					<ul class="flex items-center gap-9 font-oxygen-mono">
-						<li><a href="#about" class="tracking-tighter hover:underline underline-offset-2">{AboutWork.frontmatter.title}</a></li>
-						<li><a href="#skills" class="tracking-tighter hover:underline underline-offset-2">{Skills.frontmatter.title}</a></li>
-						<li><a href="#posts" class="tracking-tighter hover:underline underline-offset-2">Posts</a></li>
-						<li><a href="#contact" class="tracking-tighter hover:underline underline-offset-2">Contato</a></li>
-					</ul>
-					<button id="theme-toggle-desktop" class="p-2 ml-4 hover:text-white transition-colors outline-none cursor-pointer" aria-label="Toggle theme">
-						<Sun class="w-6 h-6 hidden dark:block" />
-						<Moon class="w-6 h-6 block dark:hidden" />
-					</button>
-				</div>
-			</div>
-			<!-- Mobile hidden checkbox controls menu and hamburger state -->
-			<input id="nav-toggle" type="checkbox" class="peer sr-only" />
-			<!-- Mobile hamburger menu -->
-			<label for="nav-toggle" class="md:hidden absolute right-16 top-6 cursor-pointer p-2 z-50" aria-label="Alternar menu de navegação">
-				<span class="bar1 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
-				<span class="bar2 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
-				<span class="bar3 block w-6 h-0.5 bg-lime-400" aria-hidden="true"></span>
-			</label>
-			<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
-				<li><a href="#about" class="block py-2 hover:underline">{AboutWork.frontmatter.title}</a></li>
-				<li><a href="#skills" class="block py-2 hover:underline">{Skills.frontmatter.title}</a></li>
-				<li><a href="#posts" class="block py-2 hover:underline">Posts</a></li>
-				<li><a href="#contact" class="block py-2 hover:underline">Contato</a></li>
-			</ul>
-			<button id="theme-toggle-mobile" class="md:hidden absolute right-4 top-5 cursor-pointer p-2 z-50 text-lime-400 hover:text-white transition-colors outline-none" aria-label="Toggle theme">
-				<Sun class="w-6 h-6 hidden dark:block" />
-				<Moon class="w-6 h-6 block dark:hidden" />
-			</button>
-		</nav>
+		<Navbar isHome />
 		<main class="w-full">
 			<section id="hero" class="bg-white dark:bg-teal-950 transition-colors duration-300">
 				<div class="max-w-6xl m-auto px-6 py-10 pt-36 md:pt-40 flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
@@ -244,35 +206,6 @@ const hasHidden = posts.some(p => p.hidden);
 			</footer>
 		</main>
 		<script>
-			const handleToggleClick = () => {
-				const element = document.documentElement;
-				element.classList.toggle("dark");
-			}
-
-			document.getElementById("theme-toggle-desktop")?.addEventListener("click", handleToggleClick);
-			document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggleClick);
-
-			// Automatically adapt to OS changes dynamically
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-				if (e.matches) {
-					document.documentElement.classList.add('dark');
-				} else {
-					document.documentElement.classList.remove('dark');
-				}
-			});
-
-			// Close mobile checkbox menu
-			(function(){
-				const toggle = document.getElementById('nav-toggle');
-				if (!toggle) return;
-
-				const menuLinks = document.querySelectorAll('a[href^="#"]');
-				menuLinks.forEach(link => link.addEventListener('click', () => { if (toggle.checked) toggle.checked = false; }));
-				document.addEventListener('keydown', (e) => {
-					if (e.key === 'Escape' && toggle.checked) toggle.checked = false;
-				});
-			})();
-
 			// Expand/collapse posts
 			document.getElementById('posts-toggle')?.addEventListener('click', () => {
 				document.getElementById('posts-list')?.classList.toggle('posts-expanded');

@@ -1,0 +1,91 @@
+---
+import * as AboutWork from '../content/about-and-work.md';
+import * as Skills from '../content/skills.md';
+
+import Sun from 'phosphor-astro/Sun.astro';
+import Moon from 'phosphor-astro/Moon.astro';
+
+export interface Props {
+	isHome?: boolean;
+	printHidden?: boolean;
+}
+
+const {
+	isHome = false,
+	printHidden = false,
+} = Astro.props;
+
+const prefix = isHome ? '' : '/';
+const logoHref = isHome ? '#hero' : '/';
+
+const links = [
+	{ href: `${prefix}#about`, label: AboutWork.frontmatter.title },
+	{ href: `${prefix}#skills`, label: Skills.frontmatter.title },
+	{ href: `${prefix}#posts`, label: 'Posts' },
+	{ href: `${prefix}#contact`, label: 'Contato' },
+];
+---
+
+<nav class:list={['fixed top-0 left-0 right-0 z-50 bg-black', printHidden && 'print:hidden']}>
+	<div class="max-w-6xl m-auto px-6 py-6 flex items-center justify-between">
+		<a href={logoHref} class="flex items-center gap-3">
+			<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
+		</a>
+		<div class="hidden md:flex items-center gap-4 text-lime-400">
+			<ul class="flex items-center gap-9 font-oxygen-mono">
+				{links.map(link => (
+					<li><a href={link.href} class="tracking-tighter hover:underline underline-offset-2">{link.label}</a></li>
+				))}
+			</ul>
+			<button id="theme-toggle-desktop" class="p-2 ml-4 hover:text-white transition-colors outline-none cursor-pointer" aria-label="Toggle theme">
+				<Sun class="w-6 h-6 hidden dark:block" />
+				<Moon class="w-6 h-6 block dark:hidden" />
+			</button>
+		</div>
+	</div>
+	<input id="nav-toggle" type="checkbox" class="peer sr-only" />
+	<label for="nav-toggle" class="md:hidden absolute right-16 top-6 cursor-pointer p-2 z-50" aria-label="Alternar menu de navegação">
+		<span class="bar1 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
+		<span class="bar2 block w-6 h-0.5 bg-lime-400 mb-1" aria-hidden="true"></span>
+		<span class="bar3 block w-6 h-0.5 bg-lime-400" aria-hidden="true"></span>
+	</label>
+	<ul id="mobile-menu" class="hidden peer-checked:flex md:hidden flex-col gap-2 px-6 pb-4 pt-2 bg-black text-lime-400 font-oxygen-mono">
+		{links.map(link => (
+			<li><a href={link.href} class="block py-2 hover:underline">{link.label}</a></li>
+		))}
+	</ul>
+	<button id="theme-toggle-mobile" class="md:hidden absolute right-4 top-5 cursor-pointer p-2 z-50 text-lime-400 hover:text-white transition-colors outline-none" aria-label="Toggle theme">
+		<Sun class="w-6 h-6 hidden dark:block" />
+		<Moon class="w-6 h-6 block dark:hidden" />
+	</button>
+</nav>
+
+<script>
+	const handleToggleClick = () => {
+		const element = document.documentElement;
+		element.classList.toggle("dark");
+	}
+
+	document.getElementById("theme-toggle-desktop")?.addEventListener("click", handleToggleClick);
+	document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggleClick);
+
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+		if (e.matches) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	});
+
+	// Close mobile checkbox menu on homepage
+	(function(){
+		const toggle = document.getElementById('nav-toggle');
+		if (!toggle) return;
+
+		const menuLinks = document.querySelectorAll('a[href^="#"]');
+		menuLinks.forEach(link => link.addEventListener('click', () => { if (toggle.checked) toggle.checked = false; }));
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && toggle.checked) toggle.checked = false;
+		});
+	})();
+</script>

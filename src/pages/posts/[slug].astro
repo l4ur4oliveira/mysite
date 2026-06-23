@@ -1,13 +1,13 @@
 ---
 import "../../styles/global.css";
 
-import ArrowLeft from 'phosphor-astro/ArrowLeft.astro';
-import Sun from 'phosphor-astro/Sun.astro';
-import Moon from 'phosphor-astro/Moon.astro';
-
-import Analytics from '@vercel/analytics/astro';
+import Navbar from '../../components/Navbar.astro';
 import SEO from '../../components/SEO.astro';
 import { formatDateLong } from '../../lib/format-date.js';
+
+import Analytics from '@vercel/analytics/astro';
+
+import ArrowLeft from 'phosphor-astro/ArrowLeft.astro';
 
 export async function getStaticPaths() {
 	const posts = await Astro.glob('../../content/posts/*.md');
@@ -41,21 +41,7 @@ const { title, date, imageUrl, imageAlt, imageAuthor } = frontmatter;
 		</script>
 	</head>
 	<body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
-		<nav class="fixed top-0 left-0 right-0 z-50 bg-black">
-			<div class="max-w-6xl m-auto px-6 py-6 flex items-center justify-between">
-				<a href="/" class="flex items-center gap-3">
-					<img src="/logo-lauoliveira.svg" alt="Logo Laura" class="max-w-[180px] w-full mx-auto" />
-				</a>
-				<button id="theme-toggle-desktop" class="hidden md:block p-2 text-lime-400 hover:text-white transition-colors outline-none cursor-pointer" aria-label="Toggle theme">
-					<Sun class="w-6 h-6 hidden dark:block" />
-					<Moon class="w-6 h-6 block dark:hidden" />
-				</button>
-				<button id="theme-toggle-mobile" class="md:hidden p-2 text-lime-400 hover:text-white transition-colors outline-none cursor-pointer" aria-label="Toggle theme">
-					<Sun class="w-6 h-6 hidden dark:block" />
-					<Moon class="w-6 h-6 block dark:hidden" />
-				</button>
-			</div>
-		</nav>
+		<Navbar />
 		<main class="w-full">
 			<article class="max-w-3xl m-auto px-6 pt-28 md:pt-36 pb-20">
 				<a href="/#posts" class="inline-flex items-center gap-1 text-teal-600 dark:text-teal-400 hover:text-lime-400 dark:hover:text-lime-400 transition-colors font-oxygen-mono text-sm mb-8">
@@ -88,22 +74,5 @@ const { title, date, imageUrl, imageAlt, imageAuthor } = frontmatter;
 				</div>
 			</footer>
 		</main>
-		<script>
-			const handleToggleClick = () => {
-				const element = document.documentElement;
-				element.classList.toggle("dark");
-			}
-
-			document.getElementById("theme-toggle-desktop")?.addEventListener("click", handleToggleClick);
-			document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggleClick);
-
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-				if (e.matches) {
-					document.documentElement.classList.add('dark');
-				} else {
-					document.documentElement.classList.remove('dark');
-				}
-			});
-		</script>
 	</body>
 </html>
