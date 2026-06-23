@@ -6,7 +6,7 @@ import * as Skills from '../content/skills.md';
 
 import Navbar from '../components/Navbar.astro';
 import SEO from '../components/SEO.astro';
-import { formatDateShort } from '../lib/format-date.js';
+import { formatDateShort } from '../lib/format-date.ts';
 
 import Analytics from '@vercel/analytics/astro';
 
@@ -29,7 +29,13 @@ import PresentationChart from 'phosphor-astro/PresentationChart.astro';
 import TrendUp from 'phosphor-astro/TrendUp.astro';
 import Users from 'phosphor-astro/Users.astro';
 
-const iconMap = {
+interface Skill {
+	name: string;
+	description: string;
+	icons: string[];
+}
+
+const iconMap: Record<string, any> = {
 	ChatCircleDots,
 	Clock,
 	Code,
@@ -42,7 +48,7 @@ const iconMap = {
 	PresentationChart,
 	TrendUp,
 	Users,
-};
+};	
 
 const aboutWorkContent = AboutWork.rawContent().split('<!-- split -->');
 const workContent = marked(aboutWorkContent[0]);
@@ -53,11 +59,11 @@ const allPosts = (await Astro.glob('../content/posts/*.md'))
 	.sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
 
 const posts = allPosts.map((post, i) => {
-	const slug = post.file.split('/').pop().replace('.md', '');
+	const slug = post.file.split('/').pop()!.replace('.md', '');
 	return { post, index: i, hidden: i >= 6, slug };
 });
 
-const grouped = {};
+const grouped: Record<string, typeof posts> = {};
 posts.forEach(p => {
 	const year = p.post.frontmatter.date.split('-')[0];
 	if (!grouped[year]) grouped[year] = [];
@@ -122,7 +128,7 @@ const hasHidden = posts.some(p => p.hidden);
 					<h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-10 transition-colors duration-300">{Skills.frontmatter.title}</h2>
 					<div class="w-full">
 						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-							{Skills.frontmatter.skills.map((skill) => (
+							{Skills.frontmatter.skills.map((skill: Skill) => (
 								<article class="flex flex-col justify-between h-full rounded-lg bg-white dark:bg-teal-700 shadow-md p-6 transform hover:scale-105 hover:shadow-lg transition-transform duration-200 transition-colors">
 									<div>
 										<h3 class="mb-2 text-lg font-semibold text-teal-800 dark:text-lime-400">{skill.name}</h3>

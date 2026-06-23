@@ -79,7 +79,7 @@ const links = [
 
 	// Close mobile checkbox menu on homepage
 	(function(){
-		const toggle = document.getElementById('nav-toggle');
+		const toggle = document.getElementById('nav-toggle') as HTMLInputElement;
 		if (!toggle) return;
 
 		const menuLinks = document.querySelectorAll('a[href^="#"]');
