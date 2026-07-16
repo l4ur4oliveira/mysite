@@ -39,6 +39,11 @@ Com background em front-end, tomo decisões alinhadas ao contexto técnico e atu
 
 ## Experiência
 
+* **Mentora Voluntária @ Ada's Academy** *(jun. 2026 – até o momento)*
+  * Oriento mulheres estudantes de tecnologia com foco em desenvolvimento de habilidades técnicas em front-end e soft skills.
+  * Dou feedbacks e estimulo o pensamento crítico para a construção e entrega de projetos práticos.
+  * Acompanho a evolução das mentorandas através de 1:1s semanais e da construção de PDI.
+
 * **Engineering Operations Coordinator @ Letsbook** *(jul. 2025 – mar. 2026)*
   * Expandi a gestão operacional para todo o time de desenvolvimento, ampliando minha atuação
   * Estruturei relatórios de capacidade produtiva, aumentando a visibilidade sobre alocação de pessoas e projetos
@@ -91,3 +96,14 @@ Com background em front-end, tomo decisões alinhadas ao contexto técnico e atu
 
   - Português – Nativo
   - Inglês – Intermediário/B2 (work in progress)
+
+## Cursos
+
+  - **Sprint IA no Trabalho** by PrograMaria *(mai. 2026)*
+    * Desenvolvimento de aplicação front-end para monitoramento de e-mails, agenda e tarefas, utilizando Google Antigravity IDE, Gemini, com integrações aos serviços Google Gmail e Google Calendar. Foram abordados fundamentos de inteligência artificial, engenharia de prompt e aplicações práticas com IA generativa.
+  - **Curso Gratuito de Java** by Rocketseat *(nov. 2024)*
+    * Desenvolvimento de aplicação serverless com Java e Maven para redirecionamento de urls. Realizado a integração com AWS S3 para criação e gerenciamento de buckets, exposição de endpoints via API Gateway, uso de AWS Lambda para processamento serverless, e manipulação de dados em JSON com Jackson.
+  - **EducaTech: Formando Lideranças e Educadoras Tech** by {reprograma} *(dez. 2024)*
+    * Curso intensivo com o objetivo de fortalecer a liderança e o protagonismo feminino na área de tecnologia, capacitando mulheres para liderar e treinar equipes de desenvolvimento. Abordou temas como didática, processos educacionais, competências socioemocionais, o uso da IA aplicada no contexto educacional e do ensino de programação, planejamento de aulas e formação inclusiva.
+  - **Formação Introdução a Carreiras Digitais** by Tera *(jul. 2024)*
+    * Formação voltada à carreira de produtos com os seguintes cursos: Evolução na Carreira de Produtos, Como Desenvolver sua Carreira em Produtos, Design Para Solução de Problemas e Decisões Baseadas em Dados
