@@ -1,0 +1,111 @@
+---
+import "../styles/global.css";
+import * as Favorites from "../content/favorites.md";
+
+import Navbar from "../components/Navbar.astro";
+import SEO from "../components/SEO.astro";
+
+import Analytics from "@vercel/analytics/astro";
+
+interface FavoriteItem {
+  title: string;
+  description: string;
+  thumb?: string;
+}
+
+interface FavoriteCategory {
+  name: string;
+  items: FavoriteItem[];
+}
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <SEO title="Laura de Oliveira | Favoritos" description="Jogos, livros e filmes que marcaram e continuam marcando minha vida." />
+    <Analytics />
+    <script is:inline>
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
+    <Navbar />
+    <main class="w-full">
+      <section class="bg-white dark:bg-teal-950 border-b-4 border-lime-400 transition-colors duration-300">
+        <div class="flex flex-col gap-4 max-w-6xl m-auto px-6 pt-32 pb-10">
+          <h1 class="w-fit mx-auto text-5xl font-oxygen-mono tracking-tighter dark:text-white transition-colors duration-300">
+            {Favorites.frontmatter.title}
+          </h1>
+          <h2 class="w-fit mx-auto text-xl font-oxygen-mono tracking-tighter dark:text-white transition-colors duration-300">
+            {Favorites.frontmatter.subtitle}
+          </h2>
+        </div>
+      </section>
+
+      {
+        (Favorites.frontmatter.categories as FavoriteCategory[]).map(
+          (category, i) => (
+            <section
+              class:list={[
+                "transition-colors duration-300",
+                i % 2 === 0
+                  ? "bg-teal-50 dark:bg-teal-900"
+                  : "bg-white dark:bg-teal-950",
+              ]}
+            >
+              <div class="max-w-6xl m-auto px-6 py-10 md:py-20">
+                <h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-10 transition-colors duration-300">
+                  {category.name}
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                  {category.items.map((item) => (
+                    <article class="flex flex-col rounded-lg bg-white dark:bg-teal-700 shadow-md overflow-hidden transform hover:scale-105 hover:shadow-lg transition-all duration-200">
+                      {item.thumb && (
+                        <div class="w-full h-48 overflow-hidden bg-teal-100 dark:bg-teal-800 flex-shrink-0">
+                          <img
+                            src={item.thumb}
+                            alt={item.title}
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      <div class="flex flex-col flex-1 p-6">
+                        <h3 class="text-lg font-semibold text-teal-800 dark:text-lime-400 mb-3 leading-snug">
+                          {item.title}
+                        </h3>
+                        <p class="text-teal-800 dark:text-teal-300 leading-7 text-sm flex-1">
+                          {item.description}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )
+        )
+      }
+
+      <footer class="bg-black">
+        <div class="max-w-6xl m-auto px-6 py-6 text-center font-oxygen-mono">
+          <div class="text-lime-400 flex items-center justify-center gap-2">
+            <span>&copy; {new Date().getFullYear()}</span>
+            <span
+              class="inline-block w-5 h-5"
+              style="-webkit-mask: url('/olive-leaf.svg') no-repeat center/contain; mask: url('/olive-leaf.svg') no-repeat center/contain; background-color: currentColor;"
+              aria-hidden="true"
+            ></span>
+            <span>l4uOliveira</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
