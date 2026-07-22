@@ -1,0 +1,55 @@
+---
+import "../styles/global.css";
+
+import Navbar from "../components/Navbar.astro";
+import SEO from "../components/SEO.astro";
+
+import Analytics from "@vercel/analytics/astro";
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <SEO title="Página não encontrada | Laura de Oliveira" description="Ops! A página que você está procurando não existe ou foi movida." />
+    <Analytics />
+    <script is:inline>
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300 min-h-screen flex flex-col justify-between">
+    <Navbar />
+    <main class="w-full flex-1 flex items-center justify-center px-6 py-24 pt-36 md:pt-44">
+      <div class="max-w-2xl w-full text-center flex flex-col items-center gap-2">
+        <span class="text-[9rem] md:text-[12rem] font-oxygen-mono font-bold text-lime-400 tracking-tight leading-none select-none">
+          404
+        </span>
+        <h1 class="text-4xl font-oxygen-mono font-bold text-lime-400 tracking-tighter">
+          Página não encontrada
+        </h1>
+        <p class="pt-4 text-teal-700 dark:text-teal-300 text-base max-w-md leading-relaxed">
+          Ops! A página que você está tentando acessar não foi encontrada ou pode ter sido movida.
+        </p>
+        <div class="pt-4 flex flex-col sm:flex-row items-center">
+          <a href="/" class="w-full md:w-auto flex items-center justify-center px-6 py-3 rounded-md shadow-md bg-lime-400 text-teal-800 hover:bg-teal-800 hover:text-lime-400 font-oxygen-mono transform hover:scale-105 transition-transform duration-200">
+            Voltar para o início
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-black">
+      <div class="max-w-6xl m-auto px-6 py-6 text-center font-oxygen-mono">
+        <div class="text-lime-400 flex items-center justify-center gap-2">
+          <span>&copy; {new Date().getFullYear()}</span>
+          <span class="inline-block w-5 h-5" style="-webkit-mask: url('/olive-leaf.svg') no-repeat center/contain; mask: url('/olive-leaf.svg') no-repeat center/contain; background-color: currentColor;" aria-hidden="true"></span>
+          <span>l4uOliveira</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
