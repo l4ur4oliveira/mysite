@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</sitemap-index.xml>; rel=\"sitemap\", <https://github.com/l4ur4oliveira>; rel=\"me\", <https://www.linkedin.com/in/lau-de-oliveira>; rel=\"me\", </>; rel=\"author\"; title=\"Laura de Oliveira\""
+        }
+      ]
+    }
+  ]
+}
