@@ -218,6 +218,10 @@ const hasHidden = posts.some((p) => p.hidden);
         document.getElementById("posts-list")?.classList.toggle("posts-expanded");
         document.getElementById("posts-toggle-icon")?.classList.toggle("rotate-180");
       });
+
+      // Easter egg hint
+      console.log("%c👀Psst!", "font-weight: bold; color: #79F67A; font-size: 18px; font-family: monospace");
+      console.log("%cℹ️ Conhece a sequência clássica?\n\tO contador do canto inferior esquerdo vai te acompanhar:\n\t↑ ↑ ↓ ↓ ← → ← → B A", "color: #79F67A; font-family: monospace");
     </script>
   </body>
 </html>

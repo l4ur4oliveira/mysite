@@ -21,6 +21,8 @@ const links = [
   { href: `${prefix}#posts`, label: "Posts" },
   { href: `${prefix}#contact`, label: "Contato" },
 ];
+
+const konamiSequence = ["↑", "↑", "↓", "↓", "←", "→", "←", "→", "B", "A"];
 ---
 
 <nav class:list={["fixed top-0 left-0 right-0 z-50 bg-black", printHidden && "print:hidden"]}>
@@ -69,6 +71,14 @@ const links = [
   </button>
 </nav>
 
+<div id="konami-tray" aria-hidden="true" class="fixed bottom-10 left-10 z-40 flex items-center gap-1 bg-black border border-teal-600/40 rounded-lg px-3 py-2 opacity-0 translate-y-2 pointer-events-none transition-all duration-300">
+  {
+    konamiSequence.map((label) => (
+      <span data-konami-cell class="font-oxygen-mono text-sm w-6 h-6 flex items-center justify-center rounded border border-teal-600/40 text-teal-500 opacity-30 transition-all duration-200">{label}</span>
+    ))
+  }
+</div>
+
 <script>
   const handleToggleClick = () => {
     const element = document.documentElement;
@@ -101,4 +111,65 @@ const links = [
       if (e.key === "Escape" && toggle.checked) toggle.checked = false;
     });
   })();
+
+  // Konami code easter egg 
+  const KONAMI_KEYS = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a",
+  ];
+  const KONAMI_ACTIVE_CLASSES = [
+    "text-lime-400",
+    "border-lime-400",
+    "opacity-100",
+    "scale-110",
+    "bg-lime-400/10",
+  ];
+
+  const konamiTray = document.getElementById("konami-tray");
+  const konamiCells = Array.from(document.querySelectorAll("[data-konami-cell]"));
+
+  let konamiIndex = 0;
+  let konamiTimer: number | undefined;
+
+  const resetKonami = () => {
+    konamiIndex = 0;
+    window.clearTimeout(konamiTimer);
+    konamiCells.forEach((cell) => cell.classList.remove(...KONAMI_ACTIVE_CLASSES));
+    konamiTray?.classList.remove("opacity-100", "translate-y-0", "scale-105");
+    konamiTray?.classList.add("opacity-0", "translate-y-2");
+  };
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === KONAMI_KEYS[konamiIndex]) {
+      konamiIndex++;
+      konamiCells[konamiIndex - 1]?.classList.add(...KONAMI_ACTIVE_CLASSES);
+      konamiTray?.classList.remove("opacity-0", "translate-y-2");
+      konamiTray?.classList.add("opacity-100", "translate-y-0");
+
+      if (konamiIndex === KONAMI_KEYS.length) {
+        konamiTray?.classList.add("scale-105", "border-lime-400");
+        window.setTimeout(() => {
+          if (!window.location.pathname.startsWith("/favorites")) {
+            window.location.href = "/favorites";
+          } else {
+            resetKonami();
+          }
+        }, 500);
+        return;
+      }
+
+      window.clearTimeout(konamiTimer);
+      konamiTimer = window.setTimeout(resetKonami, 2000);
+    } else {
+      resetKonami();
+    }
+  });
 </script>

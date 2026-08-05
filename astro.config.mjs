@@ -9,7 +9,12 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.oliveilaura.com.br',
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes("/favorites"),
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()]

@@ -1,4 +1,37 @@
 User-agent: *
 Allow: /
+Disallow: /favorites
+
+User-agent: GPTBot
+Allow: /
+Disallow: /favorites
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /favorites
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /favorites
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /favorites
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /favorites
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /favorites
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /favorites
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /favorites
 
 Sitemap: https://www.oliveilaura.com.br/sitemap-index.xml
