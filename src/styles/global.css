@@ -79,15 +79,13 @@ section {
   color: var(--color-teal-100);
 }
 
-#about ul,
-#resume-content ul {
+#about ul {
   list-style: outside;
   list-style-type: square;
   margin-left: 1.2rem;
 }
 
-#about ul li::marker,
-#resume-content ul li::marker {
+#about ul li::marker {
   color: var(--color-lime-400);
 }
 
@@ -95,21 +93,30 @@ section {
   content: "\25FC" "  ";
 }
 
-#resume-content h2 {
+#resume-content h2,
+#resume-content h3 {
   font-family: var(--font-oxygen-mono);
-  font-size: 2.25rem;
   color: var(--color-teal-800);
   margin-top: 3rem;
+}
+
+#resume-content h2 {
+  font-size: 2.25rem;
   margin-bottom: 1.5rem;
 }
 
-.dark #resume-content h2 {
+#resume-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.dark #resume-content h2,
+.dark #resume-content h3 {
   color: var(--color-teal-100);
 }
 
-#resume-content h3,
 #resume-content p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 #resume-content em {
