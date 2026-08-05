@@ -8,19 +8,6 @@ import Navbar from "../components/Navbar.astro";
 import Analytics from "@vercel/analytics/astro";
 
 import DownloadSimple from "phosphor-astro/DownloadSimple.astro";
-import EnvelopeSimple from "phosphor-astro/EnvelopeSimple.astro";
-import GithubLogo from "phosphor-astro/GithubLogo.astro";
-import Globe from "phosphor-astro/Globe.astro";
-import LinkedinLogo from "phosphor-astro/LinkedinLogo.astro";
-import MapPin from "phosphor-astro/MapPin.astro";
-
-const iconMap: Record<string, any> = {
-  EnvelopeSimple,
-  GithubLogo,
-  Globe,
-  LinkedinLogo,
-  MapPin,
-};
 ---
 
 <html lang="pt-br">
@@ -43,31 +30,24 @@ const iconMap: Record<string, any> = {
     <main class="w-full">
       <section class="max-w-4xl m-auto pt-24 md:pt-32 print:pt-0 px-4 md:px-0 mb-16 print:mb-0 transition-colors duration-300">
         <div class="bg-white dark:bg-teal-900 shadow-xl print:shadow-none rounded-lg p-8 md:p-16 print:p-10 transition-colors duration-300">
-          <h1 class="text-5xl md:text-6xl font-oxygen-mono text-teal-800 dark:text-lime-400 tracking-tighter mb-5 transition-colors duration-300">Laura de Oliveira</h1>
+          <h1 class="text-5xl text-center md:text-6xl font-oxygen-mono text-teal-800 dark:text-lime-400 tracking-tighter mb-5 transition-colors duration-300">Laura de Oliveira</h1>
+          <h2 class="text-xl text-center md:text-2xl font-oxygen-mono text-teal-800 dark:text-lime-400 tracking-tighter mb-5 transitio2-colors duration-300">Engineering Manager / Coordenadora de Desenvolvimento</h2>
 
-          <ul class="flex flex-col gap-2 text-sm">
+          <p class="text-sm print:text-xs text-center leading-loose tracking-wide text-teal-800 dark:text-teal-100">
             {
-              MyResume.frontmatter.details.map((item: { text: string; url?: string; icon: string }) => {
-                const IconCall = iconMap[item.icon];
+              MyResume.frontmatter.details.map((item: { title: string; text: string; url?: string; icon: string }, index: number) => {
                 return (
-                  <li class="flex items-center gap-2">
-                    {IconCall && <IconCall class="w-5 h-5 text-teal-800 dark:text-teal-100" />}
-                    {item.url ? (
-                      <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-teal-800 dark:text-teal-100 hover:text-lime-400 dark:hover:text-lime-400 hover:underline transition-colors">
-                        {item.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
-                      </a>
-                    ) : (
-                      <span class="text-teal-800 dark:text-teal-100">{item.text}</span>
-                    )}
-                  </li>
+                  <>
+                    <span class="font-bold">{item.title}: </span>{item.text} {MyResume.frontmatter.details.length - 1 === index ? '' : ' |'}
+                  </>
                 );
               })
             }
-          </ul>
+          </p>
 
-          <hr class="border-t-2 border-lime-400 my-6 border-dashed" />
+          <hr class="border-t-2 border-lime-400 my-6 border-dashed print:hidden" />
 
-          <div id="resume-content" class="text-teal-800 dark:text-teal-300 leading-7">
+          <div id="resume-content" class="text-teal-800 dark:text-teal-300 leading-7 print:text-xs print:leading-5">
             <MyResume.Content />
           </div>
         </div>

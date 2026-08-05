@@ -1,43 +1,40 @@
 ---
 details:
-    - text: "Porto Alegre, RS, Brasil"
+    - title: "Localização"
+      text: "Porto Alegre, RS, Brasil"
       icon: "MapPin"
-    - text: "l4ur4.88@gmail.com"
+    - title: "E-mail"
+      text: "l4ur4.88@gmail.com"
       icon: "EnvelopeSimple"
-    - text: "LinkedIn"
-      url: "https://www.linkedin.com/in/l4ur4oliveira"
+    - title: "LinkedIn"
+      text: "linkedin.com/in/lau-de-oliveira"
+      url: "https://www.linkedin.com/in/lau-de-oliveira"
       icon: "LinkedinLogo"
-    - text: "Site pessoal"
+    - title: "Portfólio"
+      text: "www.oliveilaura.com.br"
       url: "https://www.oliveilaura.com.br/"
       icon: "Globe"
-    - text: "GitHub"
+    - title: "GitHub"
+      text: "github.com/l4ur4oliveira"
       url: "https://github.com/l4ur4oliveira"
       icon: "GithubLogo"
 ---
 
-## Resumo
+### Resumo
 
-Atuo como Engineering Manager com background em front-end e 7+ anos de experiência em liderança de times de tecnologia.
+Engineering Manager com mais de 8 anos de experiência liderando times multidisciplinares de tecnologia (Software Engineering e QA) em ambientes de alto crescimento. Especialista na otimização da eficiência operacional e governança de processos, com histórico comprovado de redução de 80% nos custos de horas extras YoY através da estruturação de relatórios de capacidade e gestão de alocação. Sólido background técnico em desenvolvimento Front-end (React, Next.js, Node.js) e metodologias ágeis (Scrum, Kanban), focado no desenvolvimento de talentos através de ciclos de 1:1 e Plano de Desenvolvimento Individual (PDI). Atuação estratégica na intersecção entre produto e engenharia, garantindo previsibilidade de entrega e inovação com o uso de IA Generativa.
 
-Iniciei minha carreira no desenvolvimento web, atuando de forma hands-on com tecnologias como HTML, CSS, jQuery, ASP.NET e C#, antes de migrar para a liderança.
+### Habilidades
 
-Hoje, foco na eficiência da interseção entre pessoas, processos e delivery — liderando times, estruturando fluxos e garantindo alinhamento para entregas consistentes, com qualidade e previsibilidade. Contribuí para ganhos de eficiência operacional, otimização de capacidade e redução de custos.
+**Proficiente (Gestão e Processos):** Liderança de Equipes, Gestão de Pessoas (1:1, PDI), Metodologias Ágeis (Scrum, Kanban), Eficiência Operacional, Relatórios de Capacidade (Capacity Planning), Gestão de Stakeholders, Discovery e Priorização de Produtos.
 
-Tenho experiência no desenvolvimento de profissionais em diferentes níveis através de práticas como 1:1 e PDI, com foco tanto em evolução técnica quanto em soft skills e liderança.
+**Intermediário (Gestão e Processos):** Engineering Operations, DORA Metrics. 
 
-Com background em front-end, tomo decisões alinhadas ao contexto técnico e atuo com fluidez junto aos times, mantendo familiaridade com tecnologias como React, Next.js e Node.js, além de metodologias como Agile, Kanban e Scrum.
+**Proficiente (Tecnologia):** Engenharia de Software Front-end, React, Next.js, Node.js, JavaScript, HTML5, CSS3, Git/GitHub, CI/CD, REST APIs.
 
-## Competências
+**Intermediário (Tecnologia):** Arquitetura de Software, DevOps, SQL, Observabilidade, Testes Automatizados, Inteligência Artificial Generativa, Engenharia de Prompt, AI-Assisted Development, Spec-Driven Development.
 
-- Organização e processos — estruturação de fluxos e melhoria contínua
-- Comunicação — alinhamento entre times e feedbacks
-- Liderança — condução de equipes com foco em entrega e crescimento
-- Gestão de pessoas — liderança de times multidisciplinares de SE e QA
-- Produtos digitais — evolução de soluções orientadas a valor
-- Engenharia de software — background em front-end e stacks modernas
-- Vibe coding — utilização de agentes autônomos e AI no desenvolvimento de software
-
-## Experiência
+### Experiência Profissional
 
 * **Mentora Voluntária @ Ada's Academy** *(jun. 2026 – até o momento)*
   * Oriento mulheres estudantes de tecnologia com foco em desenvolvimento de habilidades técnicas em front-end e soft skills.
@@ -69,12 +66,12 @@ Com background em front-end, tomo decisões alinhadas ao contexto técnico e atu
   * Acompanhei o desempenho individual e coletivo, apoiando o desenvolvimento do time
   * Atuei na remoção de impedimentos, garantindo a continuidade dos fluxos de trabalho
   * Conduzi melhorias nos processos de produção e incentivei a inovação no time
-  * Atuei como tutora de estagiários em desenvolvimento
+  * Atuei como tutora de estagiários em desenvolvimento, resultando em uma taxa de efetivação de 75% ao final do programa
 
 * **Software Engineer | Fullstack Developer @ Pmweb** *(nov. 2012 – mar. 2016)*
-  * Atuei como líder técnica da equipe, apoiando decisões técnicas e priorizando demandas de desenvolvimento
-  * Desenvolvi campanhas de email marketing com HTML e CSS, seguindo boas práticas de entregabilidade
-  * Atuei no desenvolvimento fullstack de aplicações web com C#, HTML, CSS, jQuery e Git
+  * Atuei como Líder Técnica (Tech Lead), coordenando a priorização de demandas para um time de 4 desenvolvedores e reduzindo o tempo de entrega (lead time) em aproximadamente 25% através da padronização de processos.
+  * Desenvolvi centenas de campanhas de email marketing para clientes como Tramontina, Avon e Azul, garantindo 100% de conformidade com as boas práticas de entregabilidade
+  * Atuei no desenvolvimento fullstack de websites para o setor da hotelaria, utilizando C#, HTML, CSS, jQuery e Git, garantindo alta performance e usabilidade
 
 * **Project Manager @ Air Soluções em Tecnologia** *(abr. 2012 – nov. 2012)*
   * Defini escopo e briefing de projetos, alinhando expectativas com stakeholders
@@ -86,18 +83,13 @@ Com background em front-end, tomo decisões alinhadas ao contexto técnico e atu
   * Criei e desenvolvi layouts de interfaces, utilizando Adobe Photoshop
   * Desenvolvi páginas web, utilizando HTML e CSS
 
-## Formação
+### Educação
 
   - 2020 – 2021: MBA em Educação Corporativa e Gestão do Conhecimento, Estácio
   - 2015 – 2016: MBA em Gestão de Projetos, Universidade do Vale do Rio dos Sinos
   - 2007 – 2011: Bacharel em Sistemas de Informação, Universidade do Sul de Santa Catarina
 
-## Idiomas
-
-  - Português – Nativo
-  - Inglês – Intermediário/B2 (work in progress)
-
-## Cursos
+### Certificados e Cursos
 
   - **Sprint IA no Trabalho** by PrograMaria *(mai. 2026)*
     * Desenvolvimento de aplicação front-end para monitoramento de e-mails, agenda e tarefas, utilizando Google Antigravity IDE, Gemini, com integrações aos serviços Google Gmail e Google Calendar. Foram abordados fundamentos de inteligência artificial, engenharia de prompt e aplicações práticas com IA generativa.
@@ -107,3 +99,8 @@ Com background em front-end, tomo decisões alinhadas ao contexto técnico e atu
     * Curso intensivo com o objetivo de fortalecer a liderança e o protagonismo feminino na área de tecnologia, capacitando mulheres para liderar e treinar equipes de desenvolvimento. Abordou temas como didática, processos educacionais, competências socioemocionais, o uso da IA aplicada no contexto educacional e do ensino de programação, planejamento de aulas e formação inclusiva.
   - **Formação Introdução a Carreiras Digitais** by Tera *(jul. 2024)*
     * Formação voltada à carreira de produtos com os seguintes cursos: Evolução na Carreira de Produtos, Como Desenvolver sua Carreira em Produtos, Design Para Solução de Problemas e Decisões Baseadas em Dados
+
+### Idiomas
+
+  - Português Nativo
+  - Inglês Intermediário (B2)
