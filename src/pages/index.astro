@@ -1,10 +1,11 @@
 ---
 import "../styles/global.css";
-import * as Hero from "../content/hero.md";
+import * as HeroContent from "../content/hero.md";
 import * as AboutWork from "../content/about-and-work.md";
 import * as Skills from "../content/skills.md";
 
 import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.tsx";
 import SEO from "../components/SEO.astro";
 import { formatDateShort } from "../lib/format-date.ts";
 
@@ -51,9 +52,8 @@ const iconMap: Record<string, any> = {
 };
 
 const aboutWorkContent = AboutWork.rawContent().split("<!-- split -->");
-const workContent = marked(aboutWorkContent[0]);
-const rolesContent = marked(aboutWorkContent[1]);
-const educationContent = marked(aboutWorkContent[2]);
+const rolesContent = marked(aboutWorkContent[0]);
+const educationContent = marked(aboutWorkContent[1]);
 
 const allPosts = (await Astro.glob("../content/posts/*.md")).sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
 
@@ -91,26 +91,16 @@ const hasHidden = posts.some((p) => p.hidden);
     <Navbar isHome />
     <main class="w-full">
       <section id="hero" class="bg-white dark:bg-teal-950 transition-colors duration-300">
-        <div class="max-w-6xl m-auto px-6 py-10 pt-36 md:pt-40 flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
-          <div class="w-full md:flex-1 flex flex-col gap-8 md:gap-10">
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-oxygen-mono tracking-tighter dark:text-white transition-colors duration-300">
-              Hi, I'm <span class="text-lime-400">Laura</span>.
-            </h1>
-            <div class="leading-7">
-              <Hero.Content />
-            </div>
-          </div>
-          <div class="avatar w-auto relative rounded-full">
-            <img src={Hero.frontmatter.photoUrl} alt={Hero.frontmatter.photoAlt} class="max-w-[200px] md:max-w-[300px] lg:max-w-[350px] m-auto rounded-full relative z-2" />
-          </div>
-        </div>
+        <Hero
+          client:visible
+          intro={HeroContent.rawContent()}
+          photoUrl={HeroContent.frontmatter.photoUrl}
+          photoAlt={HeroContent.frontmatter.photoAlt}
+        />
       </section>
       <section id="about" class="bg-white dark:bg-teal-950 transition-colors duration-300">
         <div class="max-w-6xl m-auto px-6 py-10 pb-20 flex flex-col gap-10">
-          <div>
-            <h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-10 transition-colors duration-300">{AboutWork.frontmatter.title}</h2>
-            <div class="leading-7" set:html={workContent} />
-          </div>
+          <h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 transition-colors duration-300">{AboutWork.frontmatter.title}</h2>
           <div class="w-full flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-20">
             <div class="md:flex-1 leading-7" set:html={rolesContent} />
             <div class="md:flex-1 leading-7" set:html={educationContent} />
