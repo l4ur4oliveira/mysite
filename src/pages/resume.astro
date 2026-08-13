@@ -18,11 +18,11 @@ import DownloadSimple from "phosphor-astro/DownloadSimple.astro";
     <SEO title="Laura de Oliveira | Résumé" />
     <Analytics />
     <script is:inline>
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+      const storedTheme = localStorage.getItem("theme");
+      const dark = storedTheme
+        ? storedTheme === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
     </script>
   </head>
   <body class="bg-teal-50 dark:bg-teal-950 text-teal-950 dark:text-teal-300">
