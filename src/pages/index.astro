@@ -1,4 +1,6 @@
 ---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
 import "../styles/global.css";
 import * as HeroContent from "../content/hero.md";
 import * as AboutWork from "../content/about-and-work.md";
@@ -36,7 +38,7 @@ interface Skill {
   icons: string[];
 }
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, AstroComponentFactory> = {
   ChatCircleDots,
   Clock,
   Code,
