@@ -83,17 +83,15 @@ const konamiSequence = ["↑", "↑", "↓", "↓", "←", "→", "←", "→", 
   const handleToggleClick = () => {
     const element = document.documentElement;
     element.classList.toggle("dark");
+    localStorage.setItem("theme", element.classList.contains("dark") ? "dark" : "light");
   };
 
   document.getElementById("theme-toggle-desktop")?.addEventListener("click", handleToggleClick);
   document.getElementById("theme-toggle-mobile")?.addEventListener("click", handleToggleClick);
 
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (e.matches) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    if (localStorage.getItem("theme")) return;
+    document.documentElement.classList.toggle("dark", e.matches);
   });
 
   // Close mobile checkbox menu on homepage
