@@ -32,6 +32,16 @@ import PresentationChart from "phosphor-astro/PresentationChart.astro";
 import TrendUp from "phosphor-astro/TrendUp.astro";
 import Users from "phosphor-astro/Users.astro";
 
+import type { MarkdownInstance } from "astro";
+
+type PostFrontmatter = {
+  title: string;
+  date: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  imageAuthor?: string;
+};
+
 interface Skill {
   name: string;
   description: string;
@@ -57,7 +67,7 @@ const aboutWorkContent = AboutWork.rawContent().split("<!-- split -->");
 const rolesContent = marked(aboutWorkContent[0]);
 const educationContent = marked(aboutWorkContent[1]);
 
-const allPosts = (await Astro.glob("../content/posts/*.md")).sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
+const allPosts = Object.values(import.meta.glob<MarkdownInstance<PostFrontmatter>>("../content/posts/*.md", {eager: true})).sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date));
 
 const posts = allPosts.map((post, i) => {
   const slug = post.file.split("/").pop()!.replace(".md", "");
