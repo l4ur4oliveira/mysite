@@ -2,28 +2,15 @@
 import "../styles/global.css";
 import * as MyResume from "../content/resume.md";
 
-import SEO from "../components/SEO.astro";
+import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
-
-import Analytics from "@vercel/analytics/astro";
 
 import DownloadSimple from "phosphor-astro/DownloadSimple.astro";
 ---
 
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <SEO title="Laura de Oliveira | Résumé" />
-    <Analytics />
-    <script is:inline>
-      const storedTheme = localStorage.getItem("theme");
-      const dark = storedTheme
-        ? storedTheme === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", dark);
-    </script>
+    <BaseHead title="Laura de Oliveira | Résumé" />
   </head>
   <body class="bg-teal-50 dark:bg-teal-950 text-teal-950 dark:text-teal-300">
     <Navbar printHidden />

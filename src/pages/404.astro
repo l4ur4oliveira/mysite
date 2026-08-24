@@ -1,26 +1,13 @@
 ---
 import "../styles/global.css";
 
+import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
-import SEO from "../components/SEO.astro";
-
-import Analytics from "@vercel/analytics/astro";
 ---
 
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <SEO title="Página não encontrada | Laura de Oliveira" description="Ops! A página que você está procurando não existe ou foi movida." />
-    <Analytics />
-    <script is:inline>
-      const storedTheme = localStorage.getItem("theme");
-      const dark = storedTheme
-        ? storedTheme === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", dark);
-    </script>
+    <BaseHead title="Página não encontrada | Laura de Oliveira" description="Ops! A página que você está procurando não existe ou foi movida." />
   </head>
   <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300 min-h-screen flex flex-col justify-between">
     <Navbar />
