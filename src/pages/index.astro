@@ -6,12 +6,10 @@ import * as HeroContent from "../content/hero.md";
 import * as AboutWork from "../content/about-and-work.md";
 import * as Skills from "../content/skills.md";
 
+import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.tsx";
-import SEO from "../components/SEO.astro";
 import { formatDateShort } from "../lib/format-date.ts";
-
-import Analytics from "@vercel/analytics/astro";
 
 import { marked } from "marked";
 
@@ -86,18 +84,7 @@ const hasHidden = posts.some((p) => p.hidden);
 
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <SEO />
-    <Analytics />
-    <script is:inline>
-      const storedTheme = localStorage.getItem("theme");
-      const dark = storedTheme
-        ? storedTheme === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", dark);
-    </script>
+    <BaseHead />
   </head>
   <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
     <Navbar isHome />

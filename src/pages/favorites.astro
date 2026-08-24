@@ -2,10 +2,8 @@
 import "../styles/global.css";
 import * as Favorites from "../content/favorites.md";
 
+import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
-import SEO from "../components/SEO.astro";
-
-import Analytics from "@vercel/analytics/astro";
 
 interface FavoriteItem {
   title: string;
@@ -21,18 +19,7 @@ interface FavoriteCategory {
 
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/olive-leaf.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <SEO title="Laura de Oliveira | Favoritos" description="Jogos, livros e filmes que marcaram e continuam marcando minha vida." />
-    <Analytics />
-    <script is:inline>
-      const storedTheme = localStorage.getItem("theme");
-      const dark = storedTheme
-        ? storedTheme === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", dark);
-    </script>
+    <BaseHead title="Laura de Oliveira | Favoritos" description="Jogos, livros e filmes que marcaram e continuam marcando minha vida." />
   </head>
   <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
     <Navbar />
