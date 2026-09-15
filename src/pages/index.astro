@@ -116,7 +116,7 @@ const hasHidden = posts.some((p) => p.hidden);
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
               {
                 Skills.frontmatter.skills.map((skill: Skill) => (
-                  <article class="flex flex-col justify-between h-full rounded-lg bg-white dark:bg-teal-700 shadow-md p-6 transform hover:scale-105 hover:shadow-lg transition-transform duration-200 transition-colors">
+                  <article class="flex flex-col justify-between h-full rounded-lg bg-white dark:bg-teal-700 shadow-md p-6 transform hover:scale-105 hover:shadow-lg transition-all duration-200">
                     <div>
                       <h3 class="mb-2 text-lg font-semibold text-teal-800 dark:text-lime-400">{skill.name}</h3>
                       <p class="text-teal-800 dark:text-teal-300 leading-7">{skill.description}</p>
