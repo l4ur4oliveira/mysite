@@ -8,7 +8,7 @@ import * as Skills from "../content/skills.md";
 
 import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
-import Hero from "../components/Hero.tsx";
+import Hero from "../components/Hero.astro";
 import { formatDateShort } from "../lib/format-date.ts";
 
 import { marked } from "marked";
@@ -89,14 +89,11 @@ const hasHidden = posts.some((p) => p.hidden);
   <body class="bg-white dark:bg-teal-950 text-teal-950 dark:text-teal-300">
     <Navbar isHome />
     <main class="w-full">
-      <section id="hero" class="bg-white dark:bg-teal-950 transition-colors duration-300">
-        <Hero
-          client:visible
-          intro={HeroContent.rawContent()}
-          photoUrl={HeroContent.frontmatter.photoUrl}
-          photoAlt={HeroContent.frontmatter.photoAlt}
-        />
-      </section>
+      <Hero
+        intro={HeroContent.rawContent()}
+        photoUrl={HeroContent.frontmatter.photoUrl}
+        photoAlt={HeroContent.frontmatter.photoAlt}
+      />
       <section id="about" class="bg-white dark:bg-teal-950 transition-colors duration-300">
         <div class="max-w-6xl m-auto px-6 py-10 pb-20 flex flex-col gap-10">
           <h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 transition-colors duration-300">{AboutWork.frontmatter.title}</h2>

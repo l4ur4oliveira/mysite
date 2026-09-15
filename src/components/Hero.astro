@@ -1,0 +1,35 @@
+---
+interface Props {
+  intro: string;
+  photoUrl: string;
+  photoAlt: string;
+}
+
+const { intro, photoUrl, photoAlt } = Astro.props;
+---
+
+<section id="hero" class="min-h-screen flex items-center bg-white dark:bg-teal-950 transition-colors duration-300">
+  <div class="max-w-6xl m-auto px-6 py-10 pt-36 md:pt-40 flex flex-col-reverse md:flex-row items-center md:items-start justify-between gap-10 md:gap-20">
+    <div class="w-full md:flex-1 flex flex-col gap-8 md:gap-9">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-oxygen-mono tracking-tighter dark:text-white transition-colors duration-300">
+        <span class="inline-block animate-hero-fade [animation-delay:0ms]">Hi,</span>{" "}
+        <span class="inline-block animate-hero-fade [animation-delay:150ms]">I'm</span>{" "}
+        <span class="inline-block text-lime-400 animate-hero-fade [animation-delay:300ms]">Laura.</span>
+      </h1>
+      <h2 class="text-2xl lg:text-3xl font-oxygen-mono tracking-tighter dark:text-white transition-colors duration-300" aria-label="Software Engineering Manager">
+        <span class="inline-block animate-hero-fade [animation-delay:450ms]">Software</span>{" "}
+        <span class="inline-block animate-hero-fade [animation-delay:600ms]">Engineering</span>{" "}
+        <span class="inline-block dark:text-white animate-hero-fade [animation-delay:750ms]">Manager</span>
+      </h2>
+      <hr class="border-t-4 border-lime-400 border-dashed animate-hero-fade [animation-delay:900ms]" />
+      <div class="leading-7 animate-hero-fade [animation-delay:1050ms]">
+        <p>{intro}</p>
+      </div>
+    </div>
+    <div class="animate-avatar-pop">
+      <div class="avatar w-auto relative rounded-full animate-float [animation-delay:700ms]">
+        <img src={photoUrl} alt={photoAlt} loading="eager" decoding="async" class="max-w-50 md:max-w-75 lg:max-w-87.5 m-auto rounded-full relative z-2" />
+      </div>
+    </div>
+  </div>
+</section>
