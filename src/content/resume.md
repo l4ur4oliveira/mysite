@@ -91,6 +91,8 @@ Engineering Manager com mais de 8 anos de experiência liderando times multidisc
 
 ### Certificados e Cursos
 
+  - **Engenharia de Software** by FIAP *(out. 2026)*
+    * Estudos teóricos sobre técnicas e procedimentos de controle e gestão do processo de produção de softwares de qualidade. Foram abordados os fundamentos dos processos de desenvolvimento de software, métodos formais, técnicas de levantamento de requisitos e modelagem de sistemas utilizando diagrama de casos de uso e UML.
   - **Sprint IA no Trabalho** by PrograMaria *(mai. 2026)*
     * Desenvolvimento de aplicação front-end para monitoramento de e-mails, agenda e tarefas, utilizando Google Antigravity IDE, Gemini, com integrações aos serviços Google Gmail e Google Calendar. Foram abordados fundamentos de inteligência artificial, engenharia de prompt e aplicações práticas com IA generativa.
   - **Curso Gratuito de Java** by Rocketseat *(nov. 2024)*
