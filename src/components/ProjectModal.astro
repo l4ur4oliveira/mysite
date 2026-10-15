@@ -1,0 +1,216 @@
+---
+import GithubLogo from "phosphor-astro/GithubLogo.astro";
+import ArrowSquareOut from "phosphor-astro/ArrowSquareOut.astro";
+import X from "phosphor-astro/X.astro";
+
+export interface Props {
+  project: {
+    id: string;
+    title: string;
+    description: string;
+    goals: string;
+    tech: string[];
+    images?: string[];
+    github?: string;
+    live?: string;
+  };
+}
+
+const { project } = Astro.props;
+const extraImages = (project.images ?? []).slice(1);
+const hasLinks = project.github || project.live;
+---
+
+<div
+  id={`modal-${project.id}`}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`modal-title-${project.id}`}
+  class="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+  data-project-modal={project.id}
+>
+  <div class="absolute inset-0" data-modal-backdrop={project.id} aria-hidden="true"></div>
+
+  <div class="relative bg-white dark:bg-teal-900 rounded-xl shadow-2xl max-w-xl w-full mx-4 max-h-[90vh] flex flex-col overflow-hidden transition-colors duration-300">
+    <button
+      class="absolute top-4 right-4 z-10 p-2 rounded-full text-teal-600 dark:text-teal-300 bg-white/80 dark:bg-teal-900/80 backdrop-blur-sm hover:bg-teal-100 dark:hover:bg-teal-800 hover:text-teal-800 dark:hover:text-lime-400 transition-all duration-200 outline-none"
+      aria-label="Fechar modal"
+      data-modal-close={project.id}
+    >
+      <X class="w-5 h-5" />
+    </button>
+
+    {project.images?.[0] && (
+      <img
+        src={project.images[0]}
+        alt={`Screenshot do projeto ${project.title}`}
+        class="w-full h-52 object-cover shrink-0"
+      />
+    )}
+
+    <div class="p-8 overflow-y-auto min-h-0 modal-scroll">
+      <h3
+        id={`modal-title-${project.id}`}
+        class="text-2xl font-oxygen-mono font-semibold text-teal-800 dark:text-lime-400 mb-3 transition-colors duration-300"
+      >
+        {project.title}
+      </h3>
+
+      <p class="text-teal-800 dark:text-teal-300 leading-7 mb-6 transition-colors duration-300">
+        {project.description}
+      </p>
+
+      <div class="mb-6">
+        <h4 class="text-xl font-bold text-teal-800 dark:text-teal-100 leading-12 mb-2 transition-colors duration-300">
+          Motivação & Objetivos
+        </h4>
+        <p class="text-teal-800 dark:text-teal-300 leading-7 transition-colors duration-300">
+          {project.goals}
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="text-xl font-bold text-teal-800 dark:text-teal-100 leading-12 mb-2 transition-colors duration-300">
+          Tech Stack
+        </h4>
+        <div class="flex flex-wrap gap-2">
+          {project.tech.map((t) => (
+            <span class="inline-flex items-center justify-center px-2 py-1 rounded-md text-xs font-oxygen-mono bg-lime-400 text-teal-800">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {extraImages.length > 0 && (
+        <div class="mb-6">
+          <h4 class="text-xl font-bold text-teal-800 dark:text-teal-100 leading-12 mb-2 transition-colors duration-300">
+            Capturas
+          </h4>
+          <div class="grid grid-cols-2 gap-3">
+            {extraImages.map((img) => (
+              <img
+                src={img}
+                alt={`Captura do projeto ${project.title}`}
+                class="w-full rounded-lg object-cover aspect-video"
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {hasLinks && (
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md font-oxygen-mono bg-teal-50 dark:bg-teal-800 text-teal-800 dark:text-teal-100 hover:bg-lime-400 dark:hover:bg-lime-400 hover:text-teal-800 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200"
+            >
+              <GithubLogo class="w-5 h-5" />
+              GitHub
+            </a>
+          )}
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center gap-3 px-4 py-3 rounded-md shadow-md font-oxygen-mono bg-teal-50 dark:bg-teal-800 text-teal-800 dark:text-teal-100 hover:bg-lime-400 dark:hover:bg-lime-400 hover:text-teal-800 dark:hover:text-teal-800 transform hover:scale-105 transition-all duration-200"
+            >
+              <ArrowSquareOut class="w-5 h-5" />
+              Ver online
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-teal-300) transparent;
+  }
+
+  :global(.dark) .modal-scroll {
+    scrollbar-color: var(--color-teal-700) transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-teal-300);
+    border-radius: 9999px;
+  }
+
+  :global(.dark) .modal-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-teal-700);
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-teal-500);
+  }
+
+  :global(.dark) .modal-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-lime-400);
+  }
+</style>
+
+<script>
+  function initModal(modalId: string) {
+    const modal = document.getElementById(`modal-${modalId}`);
+    if (!modal) return;
+
+    const triggers = document.querySelectorAll(`[data-project-trigger="${modalId}"]`);
+    const closeBtn = modal.querySelector(`[data-modal-close="${modalId}"]`);
+    const backdrop = modal.querySelector(`[data-modal-backdrop="${modalId}"]`);
+    const main = document.querySelector("main");
+
+    const open = () => {
+      modal.classList.remove("opacity-0", "pointer-events-none");
+      modal.classList.add("opacity-100");
+      main?.setAttribute("aria-hidden", "true");
+      // Focus the close button for accessibility
+      (closeBtn as HTMLElement | null)?.focus();
+    };
+
+    const close = () => {
+      modal.classList.add("opacity-0", "pointer-events-none");
+      modal.classList.remove("opacity-100");
+      main?.removeAttribute("aria-hidden");
+    };
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", open);
+      trigger.addEventListener("keydown", (e) => {
+        if ((e as KeyboardEvent).key === "Enter" || (e as KeyboardEvent).key === " ") {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
+
+    closeBtn?.addEventListener("click", close);
+    backdrop?.addEventListener("click", close);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("pointer-events-none")) {
+        close();
+      }
+    });
+  }
+
+  // Init all modals on the page
+  document.querySelectorAll("[data-project-modal]").forEach((el) => {
+    initModal((el as HTMLElement).dataset.projectModal!);
+  });
+</script>
