@@ -1,0 +1,72 @@
+---
+import Plus from "phosphor-astro/Plus.astro";
+
+export interface Props {
+  project: {
+    id: string;
+    title: string;
+    description: string;
+    goals: string;
+    tech: string[];
+    images?: string[];
+    github?: string;
+    live?: string;
+  };
+}
+
+const { project } = Astro.props;
+const cover = project.images?.[0];
+---
+
+<article
+  class="flex flex-col rounded-lg bg-white dark:bg-teal-700 shadow-md overflow-hidden transform hover:scale-105 hover:shadow-lg transition-all duration-200 cursor-pointer group"
+  data-project-trigger={project.id}
+  tabindex="0"
+  role="button"
+  aria-haspopup="dialog"
+  aria-label={`Ver detalhes do projeto: ${project.title}`}
+>
+  <div class="relative w-full h-44 overflow-hidden">
+    {cover
+      ? (
+        <img
+          src={cover}
+          alt={`Screenshot do projeto ${project.title}`}
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+        />
+      )
+      : (
+        <div class="w-full h-full bg-teal-800 dark:bg-teal-950 flex items-center justify-center">
+          <span class="font-oxygen-mono text-lime-400 text-4xl opacity-30 select-none">&lt;/&gt;</span>
+        </div>
+      )
+    }
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/25">
+      <Plus class="w-10 h-10 text-white drop-shadow" />
+    </div>
+  </div>
+
+  <div class="flex flex-col flex-1 justify-between p-6">
+    <div>
+      <h3 class="text-lg font-semibold font-oxygen-mono text-teal-800 dark:text-lime-400 mb-2 transition-colors duration-300">
+        {project.title}
+      </h3>
+      <p class="text-teal-800 dark:text-teal-300 leading-7 line-clamp-2 transition-colors duration-300">
+        {project.description}
+      </p>
+    </div>
+
+    <div class="mt-4 flex flex-wrap gap-2">
+      {project.tech.slice(0, 3).map((t) => (
+        <span class="inline-flex items-center justify-center px-2 py-1 rounded-md text-xs font-oxygen-mono bg-lime-400 text-teal-800">
+          {t}
+        </span>
+      ))}
+      {project.tech.length > 3 && (
+        <span class="inline-flex items-center justify-center px-2 py-1 rounded-md text-xs font-oxygen-mono bg-teal-100 dark:bg-teal-600 text-teal-700 dark:text-teal-200">
+          +{project.tech.length - 3}
+        </span>
+      )}
+    </div>
+  </div>
+</article>

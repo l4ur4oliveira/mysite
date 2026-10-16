@@ -5,9 +5,12 @@ import "../styles/global.css";
 import * as HeroContent from "../content/hero.md";
 import * as AboutWork from "../content/about-and-work.md";
 import * as Skills from "../content/skills.md";
+import * as Projects from "../content/projects.md";
 
 import BaseHead from "../components/BaseHead.astro";
 import Navbar from "../components/Navbar.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import ProjectModal from "../components/ProjectModal.astro";
 import Hero from "../components/Hero.astro";
 import { formatDateShort } from "../lib/format-date.ts";
 
@@ -130,6 +133,15 @@ const hasHidden = posts.some((p) => p.hidden);
               }
             </div>
           </div>
+        </div>
+      </section>
+      <section id="projects" class="bg-teal-50 dark:bg-teal-900 transition-colors duration-300">
+        <div class="max-w-6xl m-auto px-6 py-10 md:py-20">
+          <h2 class="text-4xl font-oxygen-mono text-teal-800 dark:text-lime-400 mb-10 transition-colors duration-300">{Projects.frontmatter.title}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {Projects.frontmatter.projects.map((p: any) => <ProjectCard project={p} />)}
+          </div>
+          {Projects.frontmatter.projects.map((p: any) => <ProjectModal project={p} />)}
         </div>
       </section>
       <section id="posts" class="bg-white dark:bg-teal-950 transition-colors duration-300">
